@@ -56,7 +56,7 @@
 !
 !**********************************************************************
       subroutine gls_prestep_tile (Istr, Iend, Jstr, Jend, 
-     &                             Hz_half,
+     &                             Hz_half2,
      &                             FC, CF, FCL, CFL,
      &                             FX, FE, FXL, FEL,
      &                             DC, WORK, WORKL) 
@@ -87,7 +87,7 @@
      &     FEL(PRIVATE_2D_SCRATCH_ARRAY),
      &     WORK(PRIVATE_2D_SCRATCH_ARRAY),
      &     WORKL(PRIVATE_2D_SCRATCH_ARRAY),
-     &     Hz_half(PRIVATE_2D_SCRATCH_ARRAY,N)
+     &     Hz_half2(PRIVATE_2D_SCRATCH_ARRAY,N)
       parameter (gamma=1./6., epsil=1.E-16)
       real cx, cy, dft, dfx, dfy, tau, tau_in, tau_out
 # include "grid.h"
@@ -124,7 +124,7 @@
       do k=1,N
         do j=JstrV-1,Jend
           do i=IstrU-1,Iend
-            Hz_half(i,j,k)=cff1*Hz(i,j,k)+cff2*Hz_bak(i,j,k)
+            Hz_half2(i,j,k)=cff1*Hz(i,j,k)+cff2*Hz_bak(i,j,k)
      &        -cff*pm(i,j)*pn(i,j)*( Huon(i+1,j,k)-Huon(i,j,k)
      &                              +Hvom(i,j+1,k)-Hvom(i,j,k)
      &                                  +We(i,j,k)-We(i,j,k-1)
@@ -394,7 +394,7 @@
       do j=Jstr,Jend
         do k=1,N
           do i=Istr,Iend
-            DC(i,k)=1./Hz_half(i,j,k)
+            DC(i,k)=1./Hz_half2(i,j,k)
           enddo
         enddo
 !

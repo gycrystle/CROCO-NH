@@ -69,6 +69,11 @@
 # define vidV hisV
 # define vidT hisT
 # define vidR hisR
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+# define vidbvf hisbvf
+#endif
 # define vidO hisO
 # define vidW hisW
 !NG june 2018: begin
@@ -154,6 +159,11 @@
 # define vidV avgV
 # define vidT avgT
 # define vidR avgR
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+# define vidbvf avgbvf
+#endif
 # define vidO avgO
 # define vidW avgW
 !NG june 2018: begin
@@ -648,6 +658,38 @@
           call nf_add_attribute(ncid, vidR, indxR, 5, NF_FOUT, ierr)
 
         endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+!----------------------------------------------------------------------------
+!
+! Brunt Vaisala Frequency.
+!
+        if (wrt(indxbvf)) then
+          lvar=lenstr(vname(1,indxbvf))
+          ierr=nf_def_var (ncid, vname(1,indxbvf)(1:lvar),
+     &                             NF_FOUT, 4, w3dgrd, vidbvf)
+# ifndef AVRH
+          lvar=lenstr(vname(2,indxbvf))
+          ierr=nf_put_att_text (ncid, vidbvf, 'long_name', lvar,
+     &                                  vname(2,indxbvf)(1:lvar))
+# else
+          text='averaged '/ /vname(2,indxbvf)
+          lvar=lenstr(text)
+          ierr=nf_put_att_text (ncid, vidbvf, 'long_name', lvar,
+     &                                            text(1:lvar))
+# endif
+          lvar=lenstr(vname(3,indxbvf))
+          ierr=nf_put_att_text (ncid, vidbvf, 'units',     lvar,
+     &                                  vname(3,indxbvf)(1:lvar))
+          lvar=lenstr(vname(4,indxbvf))
+          ierr=nf_put_att_text (ncid, vidR, 'field',     lvar,
+     &                                  vname(4,indxbvf)(1:lvar))
+
+          call nf_add_attribute(ncid, vidbvf, indxbvf, 5, NF_FOUT, ierr)
+
+        endif
+# endif
 !----------------------------------------------------------------------------
 ! AOU and pCO2
 !
@@ -1151,7 +1193,7 @@
         endif
 # endif
 
-# ifdef GLS_MIXING
+# if defined GLS_MIXING || defined GLS_MIX2017
 !
 ! Turbulent Kinetic Energy.
 !
@@ -2174,6 +2216,22 @@
             goto 99                                       !--> ERROR
           endif
         endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+!-----------------------------------------------------------------------------
+!
+! Brunt Vaisala Frequency.
+!
+        if (wrt(indxbvf)) then
+          lvar=lenstr(vname(1,indxbvf))
+          ierr=nf_inq_varid (ncid, vname(1,indxbvf)(1:lvar), vidbvf)
+          if (ierr .ne. nf_noerr) then
+            write(stdout,1) vname(1,indxbvf)(1:lvar), ncname(1:lstr)
+            goto 99                                       !--> ERROR
+          endif
+        endif
+# endif
 !-----------------------------------------------------------------------------
 ! AOU and pCO2
 !
@@ -2348,7 +2406,7 @@
         endif
 # endif
 
-# ifdef GLS_MIXING
+# if defined GLS_MIXING || defined GLS_MIX2017
 !
 ! Turbulent Kinetic Energy.
 !
@@ -2782,6 +2840,11 @@
 #undef vidV
 #undef vidT
 #undef vidR
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+#undef vidbvf
+#endif
 #undef vidO
 #undef vidW
 #undef vidW

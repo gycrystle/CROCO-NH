@@ -154,7 +154,8 @@
 #  include "coupling.h"
 #  include "scalars.h"
 #  if defined ANA_VMIX || defined BVF_MIXING || defined GLS_MIXING \
-      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP
+      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+      || defined GLS_MIX2017
 #   include "mixing.h"
 #  endif
 !
@@ -235,7 +236,8 @@
 !-----------------------------------------------------------------------
 !
 #  if defined ANA_VMIX || defined BVF_MIXING || defined GLS_MIXING \
-      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP
+      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+      || defined GLS_MIX2017
 #   ifndef SPLIT_EOS
             dpth=z_w(i,j,N)-z_w(i,j,k)
             K_up(i,k)=K0+dpth*(K1+K2*dpth)
@@ -278,7 +280,8 @@
           enddo
         enddo
 #  if defined ANA_VMIX || defined BVF_MIXING || defined GLS_MIXING \
-      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP
+      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+      || defined GLS_MIX2017
         do i=istrR,iendR
           bvf(i,j,N)=bvf(i,j,N-1)
           bvf(i,j,0)=bvf(i,j,  1)
@@ -305,7 +308,7 @@
       implicit none
 #  include "param.h"
       integer Istr,Iend,Jstr,Jend, i,j,k
-      real    cff,cff1
+      real    cff,cff1,rho0og
 #  include "grid.h"
 #  include "ocean3d.h"
 #  include "coupling.h"
@@ -341,7 +344,8 @@
 !-----------------------------------------------------------------------
 !
 #  if defined ANA_VMIX || defined BVF_MIXING || defined GLS_MIXING \
-      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP
+      || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+      || defined GLS_MIX2017
         cff=g/rho0
         do k=1,N-1
           do i=IstrR,IendR
@@ -473,8 +477,8 @@
       dr00=r00-1000.
 #  endif
       do k=1,N
-        do j=JstrR,JendR
-          do i=IstrR,IendR
+        do j=Jstr,Jend
+          do i=Istr,Iend
 #  ifdef NONLIN_EOS
 !
 !  Compute density anomaly sigma-t(T,S) from nonlinear EOS
@@ -548,11 +552,16 @@ C$OMP CRITICAL (rho_cr_rgn)
         rho0=1000. + mrho
 #  endif
 
+        rho0 = nint(rho0*1.d6,kind=8)/1.d6 ! round rho0 to 6 digits
+
         MPI_master_only write(stdout,'(F10.4,2x,A,1x,A/)')
      &        rho0, 'rho0     Reset Boussinesq approximation',
      &                                 'mean density, kg/m3.'
 
       endif  ! <-- tile_count.eq.nsubs
+
+      rho0 = nint(rho0*1.d6,kind=8)/1.d6 ! round rho0 to 6 digits
+
 !
 C$OMP END CRITICAL (rho_cr_rgn)
       return

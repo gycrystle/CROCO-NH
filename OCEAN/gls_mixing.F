@@ -280,7 +280,9 @@
 ! ========== === ======== =========
 ! horizontal and vertical advection
 ! ========== === ======== =========
-
+! GR
+#if defined GLS_ADVECTION  
+! GR
 # define FX wrk1
 # define FE wrk2
 # define FC wrk5
@@ -352,6 +354,8 @@
 # undef FC
 
       enddo
+#endif 
+!GR
 !
 !-----------------------------------------------------------------------
 !  Add in horizontal Laplacian diffusion along constant S-surfaces.
@@ -924,7 +928,7 @@
       gls_c1 = 1.44      ! Shear production coefficient
       gls_c2 = 1.92      ! Dissipation coefficient
       gls_c3m = -0.4     ! Buoyancy production coefficient (minus)
-      gls_c3p = 1.0D     ! Buoyancy production coefficient (plus)
+      gls_c3p = 1.0     ! Buoyancy production coefficient (plus)
       gls_sigk = 1.0     ! Const. Schmidt number for TKE Kv
       gls_sigp = 1.3     ! Const. Schmidt num. statistical field
 # elif defined GLS_KKL

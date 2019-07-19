@@ -203,7 +203,16 @@
    Set keys related to Smagorinsky viscosity 
 */
 #ifdef UV_VIS_SMAGO 
-# define VIS_COEF_3D  
+# define VIS_COEF_3D
+#endif
+#ifdef GLS_MIX2017_3D
+# define GLS_MIX2017
+# define GLS_KEPSILON
+# undef  GLS_KOMEGA
+# define UV_VIS2
+# define VIS_COEF_3D
+# undef  TS_DIF2
+# undef  DIF_COEF_3D
 #endif
 /*
    Set UP3 scheme in barotropic equations for 2DH applications
@@ -274,6 +283,10 @@
 # define TS_DIF4       /*         Hyperdiffusion  with         */
 # undef  TS_MIX_GEO    /*        Geopotential rotation         */
 # define TS_MIX_ISO    /*     or Isopycnal    rotation         */
+#  if defined GLS_MIX2017 || defined GLS_MIXING
+#   undef  TS_MIX_ISO
+#   define TS_MIX_GEO
+#  endif
 #endif
 #ifdef TS_HADV_RSUP5   /*    Pseudo RS 5th-order scheme is:    */
 # define TS_HADV_C6    /*    6th-order centered advection      */

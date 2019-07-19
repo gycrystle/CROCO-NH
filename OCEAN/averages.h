@@ -34,6 +34,11 @@
       real v_avg(GLOBAL_2D_ARRAY,N)
       real t_avg(GLOBAL_2D_ARRAY,N,NT)
       real rho_avg(GLOBAL_2D_ARRAY,N)
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+      real bvf_avg(GLOBAL_2D_ARRAY,0:N)
+# endif
       real omega_avg(GLOBAL_2D_ARRAY,0:N)
       real w_avg(GLOBAL_2D_ARRAY,N)
 !NG june 2018: begin
@@ -44,6 +49,11 @@
 !NG june 2018: end
       common /avg_u/u_avg /avg_v/v_avg /avg_t/t_avg
      &       /avg_rho/rho_avg /avg_omega/omega_avg
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &       /avg_bvf/bvf_avg
+# endif
      &       /avg_w/w_avg
       real stflx_avg(GLOBAL_2D_ARRAY,NT)
       common /avg_stflx/stflx_avg
@@ -55,7 +65,7 @@
       real hbbl_avg(GLOBAL_2D_ARRAY)
       common /avg_hbbl/hbbl_avg
 #  endif
-#  ifdef GLS_MIXING
+#  if defined GLS_MIXING || defined GLS_MIX2017
       real tke_avg(GLOBAL_2D_ARRAY,0:N)
       real gls_avg(GLOBAL_2D_ARRAY,0:N)
       real Lscale_avg(GLOBAL_2D_ARRAY,0:N)
@@ -120,8 +130,8 @@
 #  endif
 # endif
 # ifdef WKB_WWAVE
-      real hrm_avg(GLOBAL_2D_ARRAY)
-      real frq_avg(GLOBAL_2D_ARRAY)
+      real whrm_avg(GLOBAL_2D_ARRAY)
+      real wfrq_avg(GLOBAL_2D_ARRAY)
       real wac_avg(GLOBAL_2D_ARRAY)
       real wkx_avg(GLOBAL_2D_ARRAY)
       real wke_avg(GLOBAL_2D_ARRAY)

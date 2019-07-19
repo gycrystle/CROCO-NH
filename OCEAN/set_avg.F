@@ -60,7 +60,7 @@ C$    integer omp_get_thread_num
 !
       implicit none
 # include "param.h"
-      integer Istr,Iend,Jstr,Jend, i,j, ilc, iout
+      integer Istr,Iend,Jstr,Jend, i,j, ilc, iout, indxWrk
       real cff, cff1, eps, stf_cff
       parameter (eps=1.D-20)
       parameter(stf_cff=86400/0.01)
@@ -241,6 +241,19 @@ C$    integer omp_get_thread_num
             enddo
           enddo
         endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+        if (wrtavg(indxbvf)) then
+          do k=0,N
+            do j=JstrR,JendR
+              do i=IstrR,IendR
+                bvf_avg(i,j,k)=cff*(cff1*bvf_avg(i,j,k)+bvf(i,j,k))
+              enddo
+            enddo
+          enddo
+        endif
+# endif
         if (wrtavg(indxO)) then
           do k=0,N
             do j=JstrR,JendR
@@ -303,12 +316,17 @@ C$    integer omp_get_thread_num
           enddo
         endif
 #  endif
-#  ifdef GLS_MIXING
+#  if defined GLS_MIXING || defined GLS_MIX2017
         if (wrtavg(indxTke)) then
           do k=0,N
             do j=JstrR,JendR
               do i=IstrR,IendR
-                tke_avg(i,j,k)=cff*(cff1*tke_avg(i,j,k)+tke(i,j,k,nstp))
+                tke_avg(i,j,k)=cff*(cff1*tke_avg(i,j,k) 
+#    ifdef GLS_MIXING                  
+     &                                  +tke(i,j,k,nstp))
+#    else
+     &                                  +trb(i,j,k,nstp,itke))
+#    endif              
               enddo
             enddo
           enddo
@@ -317,7 +335,12 @@ C$    integer omp_get_thread_num
           do k=0,N
             do j=JstrR,JendR
               do i=IstrR,IendR
-                gls_avg(i,j,k)=cff*(cff1*gls_avg(i,j,k)+gls(i,j,k,nstp))
+                gls_avg(i,j,k)=cff*(cff1*gls_avg(i,j,k)
+#    ifdef GLS_MIXING                  
+     &                                  +gls(i,j,k,nstp))
+#    else
+     &                                  +trb(i,j,k,nstp,igls))
+#    endif
               enddo
             enddo
           enddo

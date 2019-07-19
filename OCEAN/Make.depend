@@ -359,6 +359,11 @@ get_wwave.o: get_wwave.F cppdefs.h param.h scalars.h ncscrum.h compute_tile_boun
 get_wwave.o: grid.h ocean2d.h forces.h  cppdefs_dev.h set_global_definitions.h 
 get_wwave.o:
 #
+gls_mix2017.o: gls_mix2017.F cppdefs.h param.h ocean3d.h grid.h forces.h mixing.h 
+gls_mix2017.o: scalars.h private_scratch.h set_global_definitions.h gls_stab_func.h 
+gls_mix2017.o: cppdefs_dev.h 
+gls_mix2017.o:
+#
 gls_mixing.o: gls_mixing.F cppdefs.h param.h scalars.h compute_tile_bounds.h grid.h 
 gls_mixing.o: compute_auxiliary_bounds.h ocean2d.h private_scratch.h forces.h mixing.h 
 gls_mixing.o: gls_smooth.h gls_horiz_advection.h gls_vert_advection.h gls_bc.h 

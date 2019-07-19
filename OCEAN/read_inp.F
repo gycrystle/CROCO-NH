@@ -953,14 +953,12 @@ c        close(testunit)
 !
 ! Switches for GLS fields to be saved into history file.
 !
-# ifdef GLS_MIXING
+#if defined GLS_MIXING || defined GLS_MIX2017
       elseif (keyword(1:kwlen).eq.'gls_history_fields') then
         call cancel_kwd (keyword(1:kwlen), ierr)
-        read(input,*,err=95) wrthis(indxAkk),  wrthis(indxAkp)
-     &                    ,  wrthis(indxTke),  wrthis(indxGls)
+        read(input,*,err=95) wrthis(indxTke),  wrthis(indxGls)
      &                    ,  wrthis(indxLsc)
-        if ( wrthis(indxAkk) .or. wrthis(indxAkp) .or. wrthis(indxTke)
-     &                       .or. wrthis(indxGls) .or. wrthis(indxLsc)
+        if (wrthis(indxTke) .or. wrthis(indxGls) .or. wrthis(indxLsc)
      &     ) wrthis(indxTime)=.true.
 
         MPI_master_only write(stdout,'(/1x,A,5(/6x,l1,2x,A,1x,A))')
@@ -1016,6 +1014,13 @@ c        close(testunit)
 # ifdef SALINITY
      &                                          ,  wrtavg(indxAks)
 # else 
+     &                                          ,  dumboolean
+# endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &                                          ,  wrtavg(indxbvf)
+# else
      &                                          ,  dumboolean
 # endif
 # ifdef VIS_COEF_3D
@@ -1084,6 +1089,11 @@ c        close(testunit)
 #  ifdef SALINITY
      &                                        .or. wrtavg(indxAks)
 #  endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &                                        .or. wrtavg(indxbvf)
+# endif
 # ifdef VIS_COEF_3D
      &                                        .or. wrtavg(indxVisc)
 # endif
@@ -1140,6 +1150,12 @@ c        close(testunit)
 #  ifdef SALINITY
      &  , wrtavg(indxAks),  'write Aks  ',
      &                         'Vertical diffusivity for salinity.'
+#  endif
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &  , wrtavg(indxbvf),  'write bvf  ',
+     &                         'Brunt Vaisala Frequency.'
 #  endif
 #  ifdef VIS_COEF_3D
      &  , wrtavg(indxVisc),'write visc3d', 'Horizontal viscosity'
@@ -1204,14 +1220,12 @@ c        close(testunit)
 !
 ! Switches for GLS fields to be saved into history file.
 !
-#  ifdef GLS_MIXING
+#  if defined GLS_MIXING || defined GLS_MIX2017
       elseif (keyword(1:kwlen).eq.'gls_averages') then
         call cancel_kwd (keyword(1:kwlen), ierr)
-        read(input,*,err=95) wrtavg(indxAkk),  wrtavg(indxAkp)
-     &                    ,  wrtavg(indxTke),  wrtavg(indxGls)
-     &                    ,  wrtavg(indxLsc)
-        if ( wrtavg(indxAkk) .or. wrtavg(indxAkp) .or. wrtavg(indxTke)
-     &                       .or. wrtavg(indxGls) .or. wrtavg(indxLsc)
+        read(input,*,err=95) wrtavg(indxTke),  wrtavg(indxGls)
+     &                    ,  wrtavg(indxLsc)       
+        if (wrtavg(indxTke) .or. wrtavg(indxGls) .or. wrtavg(indxLsc)
      &     ) wrtavg(indxTime)=.true.
 
         MPI_master_only write(stdout,'(/1x,A,5(/6x,l1,2x,A,1x,A))')
@@ -1537,7 +1551,8 @@ CR        write(*,*)'NumGasExcTerms=',NumGasExcTerms
         enddo
 
 # endif
-# if !defined LMD_MIXING && !defined BVF_MIXING && !defined GLS_MIXING
+# if !defined LMD_MIXING && !defined BVF_MIXING && \
+     !defined GLS_MIX2017 && !defined GLS_MIXING
 !
 ! Background vertical viscosity and mixing coefficients for tracers.
 !

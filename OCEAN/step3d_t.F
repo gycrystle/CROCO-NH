@@ -262,7 +262,8 @@
 ! (swdk is used later in this routine)
 !----------------------------------------------------------
 !
-# if defined LMD_SKPP || defined LMD_BKPP || defined GLS_MIXING
+# if defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
 #  define wrk1 FX
 #  define wrk2 FE
       do k=1,N-1
@@ -356,7 +357,8 @@
             do k=1,N-1
               do i=Istr,Iend
                 FC(i,k)=0.
-# if defined LMD_SKPP || defined LMD_BKPP || defined GLS_MIXING
+# if defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
      &    +dt*srflx(i,j)*swdk(i,j,k)
 #  ifdef LMD_NONLOCAL
      &    -dt*ghats(i,j,k)*(stflx(i,j,itemp)-srflx(i,j))

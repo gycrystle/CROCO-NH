@@ -98,7 +98,8 @@
 
 # if defined ANA_VMIX || defined BVF_MIXING \
   || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
-  || defined GLS_MIXING
+  || defined GLS_MIX2017 || defined GLS_MIXING \
+  || defined UV_VIS_SMAGO_3D
       real bvf(GLOBAL_2D_ARRAY,0:N)
       common /mixing_bvf/ bvf
 # endif
@@ -153,6 +154,13 @@
       common /gls_Akp/Akp
       common /gls_Lscale/Lscale
 # endif /* GLS_MIXING */
+
+# ifdef GLS_MIX2017
+      real trb(GLOBAL_2D_ARRAY,0:N,2,NGLS)
+      common /gls_trb/trb
+      real Lscale(GLOBAL_2D_ARRAY,0:N)
+      common /gls_lsc/Lscale
+# endif /* GLS_MIX2017 */
 
 #else
 

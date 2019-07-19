@@ -32,6 +32,16 @@
 # include "grid.h"
 #endif
 
+!======================================================
+! Look for Hbl, Akt, Akv, ... (J. Gula)
+!======================================================
+# if defined LMD_SKPP || defined LMD_BKPP || defined GLS_MIX2017
+# include "mixing.h"
+# endif
+!======================================================
+!
+!======================================================
+
       real time_scale
       integer itrc
 #if defined SEDIMENT || defined BBL
@@ -274,6 +284,197 @@
           got_tini(itrc)=.false.
         endif
       enddo
+
+
+!======================================================
+!Look for Hbl, Akt, Akv, ... (J. Gula)
+!======================================================
+
+# ifdef LMD_SKPP
+#  ifdef LMD_SKPP2005
+!
+!  hbl:
+!
+
+      lvar=lenstr(vname(1,indxHbl))
+      ierr=nf_inq_varid (ncid, vname(1,indxHbl)(1:lvar), varid)
+      if (ierr .eq. nf_noerr) then
+        ierr=nf_fread (hbls(START_2D_ARRAY,1), ncid, varid,
+     &                                         indx, r2dvar)
+        if (ierr .ne. nf_noerr) then
+          MPI_master_only write(stdout,2) vname(1,indxHbl)(1:lvar)
+     &                                , indx, ininame(1:lstr)
+          goto 99                                        !--> ERROR
+        endif
+      else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxHbl)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.'
+      endif
+#  endif
+!
+!  vertical viscosity coefficient.:
+!
+        lvar=lenstr(vname(1,indxAkv))
+        ierr=nf_inq_varid (ncid, vname(1,indxAkv)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (Akv(START_2D_ARRAY,0), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxAkv)(1:lvar)
+     &                , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxAkv)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+!
+!  vertical diffusion coefficient for potential temperature.
+!
+        lvar=lenstr(vname(1,indxAkt))
+        ierr=nf_inq_varid (ncid, vname(1,indxAkt)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (Akt(START_2D_ARRAY,0,itemp), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxAkt)(1:lvar)
+     &               , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxAkt)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+#  ifdef SALINITY
+!
+!  vertical diffusion coefficient for salinity.
+!
+        lvar=lenstr(vname(1,indxAks))
+        ierr=nf_inq_varid (ncid, vname(1,indxAks)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (Akt(START_2D_ARRAY,0,isalt), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxAks)(1:lvar)
+     &               , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxAks)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+#  endif
+# endif
+
+
+# ifdef LMD_BKPP
+      lvar=lenstr(vname(1,indxHbbl))
+      ierr=nf_inq_varid (ncid, vname(1,indxHbbl)(1:lvar), varid)
+      if (ierr .eq. nf_noerr) then
+        ierr=nf_fread (hbbl(START_2D_ARRAY), ncid, varid,
+     &                                           indx, r2dvar)
+        if (ierr .ne. nf_noerr) then
+          MPI_master_only write(stdout,2) vname(1,indxHbbl)(1:lvar)
+     &         , indx, ininame(1:lstr), nf_strerror(ierr)
+          goto 99                                        !--> ERROR
+        endif
+      else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxHbbl)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+
+      endif
+# endif
+
+!======================================================
+
+# if defined GLS_MIX2017 || defined GLS_MIXING
+
+!
+!  turbulent kinetic energy.
+!
+        lvar=lenstr(vname(1,indxTke))
+        ierr=nf_inq_varid (ncid, vname(1,indxTke)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (trb(START_2D_ARRAY,0,1,itke), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxTke)(1:lvar)
+     &                , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxTke)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+
+
+!
+!  generic length scale.
+!
+        lvar=lenstr(vname(1,indxGls))
+        ierr=nf_inq_varid (ncid, vname(1,indxGls)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (trb(START_2D_ARRAY,0,1,igls), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxGls)(1:lvar)
+     &                , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxGls)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+
+
+!
+!  vertical mixing length scale.
+!
+        lvar=lenstr(vname(1,indxLsc))
+        ierr=nf_inq_varid (ncid, vname(1,indxLsc)(1:lvar),
+     &                                                    varid)
+        if (ierr .eq. nf_noerr) then
+          ierr=nf_fread (Lscale(START_2D_ARRAY,0), ncid,
+     &                                    varid, indx, w3dvar)
+          if (ierr .ne. nf_noerr) then
+            MPI_master_only write(stdout,2) vname(1,indxLsc)(1:lvar)
+     &                , indx, ininame(1:lstr), nf_strerror(ierr)
+            goto 99                                       !--> ERROR
+          endif
+        else
+        MPI_master_only write(stdout,3)
+     &     'WARNING: netCDF variable ''',
+     &     vname(1,indxLsc)(1:lvar),       ''' not found in ''',
+     &     ininame(1:lstr), ''' ==> initialized to zero state.' 
+        endif
+# endif
+
+!======================================================
+!END MODIF_JG_2
+!======================================================
+
+
+
+
 #ifdef SEDIMENT
 !
 ! Bed thickness

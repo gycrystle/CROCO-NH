@@ -791,7 +791,12 @@
                       /* Sponge */
 # undef SPONGE
                       /* Semi-implicit Vertical Tracer/Mom Advection */
-# define  VADV_ADAPT_IMP
+# define  VADV_ADAPT_IMP                      
+                     /* Lateral Explicit Momentum Mixing */
+# define  UV_VIS2
+# ifdef UV_VIS2
+#  define UV_VIS_SMAGO
+# endif
                       /* Vertical Mixing */
 # undef  BODYFORCE
 # undef  BVF_MIXING

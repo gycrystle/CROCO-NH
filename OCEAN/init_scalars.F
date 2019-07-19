@@ -1326,6 +1326,18 @@ CR      write(stdout,'(1x,A,I3)') 'indxR =',indxR
       vname(5,indxR)='sea_water_sigma_t                           '
       vname(7,indxR)='                                            '
 
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+CR      write(stdout,'(1x,A,I3)') 'indxbvf =',indxbvf
+      vname(1,indxbvf)='bvf                                         '
+      vname(2,indxbvf)='Brunt Vaisala Frequency                     '
+      vname(3,indxbvf)='second-1                                    '
+      vname(4,indxbvf)='bvf, scalar, series                         '
+      vname(5,indxbvf)='brunt_vaisala_frequency                     '
+      vname(7,indxbvf)='                                            '
+# endif
+
 # ifdef VIS_COEF_3D
 CR      write(stdout,'(1x,A,I3)') 'indxVisc =',indxVisc
       vname(1,indxVisc)='visc3d                                   '
@@ -1409,7 +1421,7 @@ CR      write(stdout,'(1x,A,I3)') 'indxHbbl =',indxHbbl
       vname(6,indxHbbl)='lat_rho lon_rho                          '
       vname(7,indxHbbl)='                                         '
 # endif
-# ifdef GLS_MIXING
+# if defined GLS_MIXING || defined GLS_MIX2017
 CR      write(stdout,'(1x,A,I3)') 'indxTke =',indxTke   
       vname(1,indxTke)='tke                                       '
       vname(2,indxTke)='turbulent kinetic energy                  '
@@ -1974,7 +1986,7 @@ CR       write(stdout,'(20x,A)') vname(1,indxTXadv+itrc-1)
        write(vname3,*) trim(unitt),' second-1                     '
        vname(3,indxTXadv+itrc-1)=vname3
        vname(4,indxTXadv+itrc-1)='                                '
-       vname(5,indxTYadv+itrc-1)='                                '
+       vname(5,indxTXadv+itrc-1)='                                '
        vname(7,indxTXadv+itrc-1)='                                '
 
 CR       write(stdout,'(1x,A,I3)') 'indxTYadv = ',indxTYadv+itrc-1

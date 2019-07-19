@@ -9,7 +9,7 @@
 ! CROCO website : http://www.croco-ocean.org
 !======================================================================
 !
-#if defined LMD_SKPP || defined LMD_BKPP || defined GLS_MIXING
+#if defined LMD_SKPP || defined LMD_BKPP || defined GLS_MIX2017 || defined GLS_MIXING
       integer Jwtype(GLOBAL_2D_ARRAY)
       common /nils_jerlov/ Jwtype
 #endif

@@ -53,7 +53,7 @@ include Makedefs
 \
 	ana_vmix.F	bvf_mix.F	lmd_vmix.F 	gls_mixing.F\
 	lmd_skpp.F	lmd_bkpp.F	lmd_swfrac.F	lmd_wscale.F\
-	gls_prestep.F\
+	gls_prestep.F	gls_mix2017.F\
 \
 	diag.F		wvlcty.F	checkdims.F	grid_stiffness.F\
 	bio_diag.F	setup_kwds.F    check_kwds.F	check_srcs.F\

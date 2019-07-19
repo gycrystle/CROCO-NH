@@ -26,6 +26,7 @@
 ! indxMUD         gravel,sand & mud sediment tracers
 ! indxO,indeW     omega vertical mass flux and true vertical velocity
 ! indxR           density anomaly
+! indxbvf         Brunt Vaisala Frequency
 ! indxAOU  	  Apparent Oxygen Utilization
 ! indxWIND10      surface wind speed 10 m
 ! indxpCO2        partial pressure of CO2 in the ocean
@@ -86,7 +87,7 @@
 ! indxKAPS         Bernoulli head
 !
 ! ** DIAGNOSTICS_UV **
-!  indxMXadv,indxMYadv,indxMXadv : xi-, eta-, and s- advection terms
+!  indxMXadv,indxMYadv,indxMVadv : xi-, eta-, and s- advection terms
 !  indxMCor                      : Coriolis term,
 !  indxMPrsgrd                   : Pressure gradient force term
 !  indxMHmix, indxMVmix          : horizontal and vertical mixinig terms 
@@ -305,7 +306,7 @@
       integer indxHbbl
       parameter (indxHbbl=indxAkt+6)
 # endif
-# ifdef GLS_MIXING
+# if defined GLS_MIXING || defined GLS_MIX2017
       integer indxAkk
       parameter (indxAkk=indxAkt+7)
       integer indxAkp
@@ -366,13 +367,21 @@
       parameter (indxSSH=indxVb+1)
 # endif
 #endif /* SOLVE3D */
+
+#if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+      integer indxbvf
+      parameter (indxbvf=indxSSH+1)
+#endif
+
       integer indxSUSTR, indxSVSTR
-      parameter (indxSUSTR=indxSSH+1, indxSVSTR=indxSSH+2)
+      parameter (indxSUSTR=indxSSH+2, indxSVSTR=indxSSH+3)
       integer indxTime2
-      parameter (indxTime2=indxSSH+3)
+      parameter (indxTime2=indxSSH+4)
 #ifdef SOLVE3D
       integer indxShflx, indxShflx_rsw
-      parameter (indxShflx=indxSSH+4)
+      parameter (indxShflx=indxSSH+5)
 # ifdef SALINITY
       integer indxSwflx
       parameter (indxSwflx=indxShflx+1, indxShflx_rsw=indxShflx+2)
@@ -676,7 +685,12 @@
      &      , hisO,   hisW,   hisVisc, hisDiff
      &      , hisPnh                                    !NG june 2018
      &      , hisAkv, hisAkt, hisAks
-# ifdef GLS_MIXING
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &      , hisbvf
+# endif
+# if defined GLS_MIXING || defined GLS_MIX2017
      &      , hisAkk, hisAkp, hisTke, hisGls, hisLsc
 # endif
 # ifdef BULK_FLUX
@@ -753,7 +767,12 @@
      &      , avgU,   avgV,   avgR,    avgHbl, avgHbbl
      &      , avgO,   avgW,   avgPnh, avgVisc, avgDiff  !NG june 2018
      &      , avgAkv, avgAkt, avgAks
-# ifdef GLS_MIXING
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &      , avgbvf
+# endif
+# if defined GLS_MIXING || defined GLS_MIX2017
      &      , avgAkk, avgAkp, avgTke, avgGls, avgLsc
 # endif
 # ifdef BIOLOGY
@@ -901,7 +920,12 @@
      &      , hisPnh                                   !NG june 2018
      &      , hisAkv,  hisAkt,   hisAks
      &      , hisHbl,  hisHbbl
-# ifdef GLS_MIXING
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &      , hisbvf
+# endif
+# if defined GLS_MIXING || defined GLS_MIX2017
      &      , hisAkk, hisAkp, hisTke, hisGls, hisLsc
 # endif
 # ifdef BULK_FLUX
@@ -997,7 +1021,12 @@
      &      , avgO,    avgW,     avgPnh, avgVisc,  avgDiff !NG june 2018
      &      , avgAkv,  avgAkt,   avgAks
      &      , avgHbl,  avgHbbl
-#  ifdef GLS_MIXING
+# if defined ANA_VMIX || defined BVF_MIXING \
+  || defined LMD_MIXING || defined LMD_SKPP || defined LMD_BKPP \
+  || defined GLS_MIX2017 || defined GLS_MIXING
+     &      , avgbvf
+# endif
+#  if defined GLS_MIXING || defined GLS_MIX2017
      &      , avgAkk, avgAkp, avgTke, avgGls, avgLsc
 #  endif
 #  ifdef BIOLOGY
