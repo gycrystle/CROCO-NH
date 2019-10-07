@@ -32,7 +32,7 @@
    !!      !  2016-11 (F. Lemarié) : original code inspired by the Mars3D 
    !!                                implementation by S. Petton, A.-C. Bennis,  
    !!                                T. Duhaut, V. Garnier, F. Dumas 
-   !!
+   !!      !  2019-07 (G. Crystle) : Try to complete the advection scheme
    !!======================================================================
 
 # define PSI_SMOOTH
@@ -62,7 +62,7 @@ c++ # define CANUTO_A
 #endif
 
 
-!=======================================================================
+!**********************************************************************
       SUBROUTINE gls_mix2017 (tile)
 !-----------------------------------------------------------------------
       IMPLICIT NONE
@@ -72,30 +72,26 @@ c++ # define CANUTO_A
 # include "private_scratch.h"
 # include "ocean3d.h"
 # include "compute_tile_bounds.h"
-      
       trd=omp_get_thread_num()
-      
-      call gls_mix2017_tile ( Istr, Iend, Jstr, Jend,
-     &                      A3d(1, 1,trd), A2d(1,  2,trd), 
+      call gls_mix2017_tile (Istr, Iend, Jstr, Jend,
+     &                      A3d(1, 1,trd), A2d(1, 2,trd), 
      &                      A2d(1, 3,trd), A2d(1, 4,trd), A2d(1,  5,trd)
      &                    , A2d(1, 6,trd), A2d(1, 7,trd), A2d(1,  8,trd) )
-      
       RETURN
 !-----------------------------------------------------------------------
       END
-!=======================================================================
 
 
-
-
-
-
-!=======================================================================
-       SUBROUTINE gls_mix2017_tile ( Istr, Iend, Jstr, Jend, 
-     &                            shear2    ,   diss, ustar_sfc_sq, 
-     &                      ustar_bot_sq, DC,     FC,      CF,  RH  ) 
-!-----------------------------------------------------------------------                                                                
+!
+!**********************************************************************
+      SUBROUTINE gls_mix2017_tile (Istr, Iend, Jstr, Jend, 
+     &                             shear2      , diss        ,
+     &                             ustar_sfc_sq, ustar_bot_sq,
+     &                             DC, FC, CF, RH  ) 
+!-----------------------------------------------------------------------             
+                                                   
       IMPLICIT NONE
+
 # include "param.h"
       ! Local integers
       INTEGER         ::   Istr, Iend, Jstr, Jend
@@ -242,6 +238,10 @@ c++ # define CANUTO_A
          ENDDO
       ENDIF 
 
+
+! ========== === ======== =========
+! horizontal and vertical advection
+! ========== === ======== =========
 
       !--------------------------------------------------
       ! Horizontal advection (first-order upwind, not yet finalized)
