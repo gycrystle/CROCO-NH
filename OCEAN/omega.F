@@ -242,8 +242,8 @@
 #ifdef VADV_ADAPT_IMP
       ! uncomment to see whether indeed there will some points with Wi neq 0
 
-!      if(count.gt.0)
-!     &write(*,*)( "nb grid point with semivertical implicit adv",count)
+      if(count.gt.0)
+     &write(*,*)( "nb grid point with semivertical implicit adv",count)
 #endif
 !
 !---------------------------------------------------------      

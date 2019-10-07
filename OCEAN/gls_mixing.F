@@ -738,8 +738,10 @@
 !
             Gh=min(gls_Gh0,-buoy2(i,j,k)*Ls_lmt*Ls_lmt
      &                         /(2.*tke(i,j,k,nnew)))
-            Gh=min(Gh,Gh-(Gh-gls_Ghcri)**2
-     &                    /(Gh+gls_Gh0-2.*gls_Ghcri))
+!            Gh=min(Gh,Gh-(Gh-gls_Ghcri)**2
+!     &                    /(Gh+gls_Gh0-2.*gls_Ghcri))
+            Gh=min(Gh,Gh-max(0.,Gh-gls_Ghcri)**2
+     &                    /(Gh+gls_Gh0-2.*gls_Ghcri)) ! Limiter correction by Harcourt 
             Gh=max(Gh,gls_Ghmin)
 # if defined CANUTO_A || defined CANUTO_B
 !
