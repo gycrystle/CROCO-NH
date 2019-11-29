@@ -1,0 +1,61 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 260096
+-rw-r--r-- 1 gcrystle lpo      1200 Jan 18 17:46 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan 18 18:50 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo      4099 Jan 18 19:27 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo 241783048 Jan 18 19:28 caldeira_0qfin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     29045 Jan 18 19:31 output0qfin.02
+-rw-r--r-- 1 gcrystle lpo       126 Jan 18 19:31 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo     30564 Jan 18 19:42 output0qfin.01
+-rw-r--r-- 1 gcrystle lpo      4098 Jan 18 19:43 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14245344 Jan 18 19:44 croco
+Fri Jan 18 19:44:16 GMT 2019
+MPT ERROR: Rank 23(g:23) is aborting with error code 0.
+	Process ID: 55087, Host: r2i1n7, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira0qfin/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 61(g:61) is aborting with error code 0.
+	Process ID: 50526, Host: r2i1n9, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira0qfin/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 39(g:39) is aborting with error code 0.
+	Process ID: 50152, Host: r2i1n8, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira0qfin/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: MPI_COMM_WORLD rank 15 has terminated without calling MPI_Finalize()
+	aborting job
+0.008u 0.016s 3:35.55 0.0%	0+0k 0+8io 0pf+0w
+Fri Jan 18 19:47:52 GMT 2019
+total 273920
+-rw-r--r-- 1 gcrystle lpo      1200 Jan 18 17:46 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan 18 18:50 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo     29045 Jan 18 19:31 output0qfin.02
+-rw-r--r-- 1 gcrystle lpo       126 Jan 18 19:31 nhmg_prof_rank0000.log
+-rwxr-xr-x 1 gcrystle lpo  14245344 Jan 18 19:44 croco
+-rw-r--r-- 1 gcrystle lpo 241783048 Jan 18 19:44 caldeira_0qfin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4100 Jan 18 19:45 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo      4098 Jan 18 19:45 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     32859 Jan 18 19:47 output0qfin.01
+0.000u 0.012s 0:02.83 0.3%	0+0k 0+0io 0pf+0w
+Fri Jan 18 19:47:54 GMT 2019
+total 265728
+-rw-r--r-- 1 gcrystle lpo      1200 Jan 18 17:46 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan 18 18:50 croco_grd.nc
+-rwxr-xr-x 1 gcrystle lpo  14245344 Jan 18 19:44 croco
+-rw-r--r-- 1 gcrystle lpo 241783048 Jan 18 19:44 caldeira_0qfin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4100 Jan 18 19:45 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo      4098 Jan 18 19:45 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     32859 Jan 18 19:47 output0qfin.01
+-rw-r--r-- 1 gcrystle lpo     29045 Jan 18 19:47 output0qfin.02
+-rw-r--r-- 1 gcrystle lpo       126 Jan 18 19:47 nhmg_prof_rank0000.log

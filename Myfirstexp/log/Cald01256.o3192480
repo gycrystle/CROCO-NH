@@ -1,0 +1,70 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+Tue Mar  5 11:12:08 GMT 2019
+total 14848
+-rw-r--r-- 1 gcrystle lpo 14900786 Mar  5 10:57 croco_grd2244466.nc
+-rw-r--r-- 1 gcrystle lpo     1200 Mar  5 10:57 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     4190 Mar  5 11:10 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo       72 Mar  5 11:10 output01.01
+-rw-r--r-- 1 gcrystle lpo       72 Mar  5 11:10 output01.02
+-rw-r--r-- 1 gcrystle lpo       72 Mar  5 11:10 output01.03
+-rw-r--r-- 1 gcrystle lpo       32 Mar  5 11:10 nhmg_prof_rank0000.log
+-rwxr-xr-x 1 gcrystle lpo 14283520 Mar  5 11:12 croco
+0.600u 4.384s 17:41:06.17 0.0%	0+0k 0+0io 0pf+0w
+Wed Mar  6 04:53:15 GMT 2019
+total 81053696
+-rw-r--r-- 1 gcrystle lpo    14900786 Mar  5 10:57 croco_grd2244466.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar  5 10:57 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4190 Mar  5 11:10 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283520 Mar  5 11:12 croco
+-rw-r--r-- 1 gcrystle lpo   208775992 Mar  6 04:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo 49809069724 Mar  6 04:53 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 32942816212 Mar  6 04:53 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3760372 Mar  6 04:53 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 Mar  6 04:53 nhmg_prof_rank0000.log
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 39341 Killed                  $mpicmdline_prefix -f $paramfile
+0.000u 0.008s 0:00.98 0.0%	0+0k 0+16io 0pf+0w
+Wed Mar  6 04:53:16 GMT 2019
+total 81053696
+-rw-r--r-- 1 gcrystle lpo    14900786 Mar  5 10:57 croco_grd2244466.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar  5 10:57 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4190 Mar  5 11:10 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283520 Mar  5 11:12 croco
+-rw-r--r-- 1 gcrystle lpo   208775992 Mar  6 04:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo 49809069724 Mar  6 04:53 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 32942816212 Mar  6 04:53 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3760372 Mar  6 04:53 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 Mar  6 04:53 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo          64 Mar  6 04:53 output01.02
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 39437 Killed                  $mpicmdline_prefix -f $paramfile
+0.004u 0.004s 0:01.24 0.0%	0+0k 0+16io 0pf+0w
+Wed Mar  6 04:53:17 GMT 2019
+total 81049344
+-rw-r--r-- 1 gcrystle lpo    14900786 Mar  5 10:57 croco_grd2244466.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar  5 10:57 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4190 Mar  5 11:10 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283520 Mar  5 11:12 croco
+-rw-r--r-- 1 gcrystle lpo   208775992 Mar  6 04:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo 49809069724 Mar  6 04:53 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 32942816212 Mar  6 04:53 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3760372 Mar  6 04:53 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 Mar  6 04:53 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo          64 Mar  6 04:53 output01.02
+-rw-r--r-- 1 gcrystle lpo          64 Mar  6 04:53 output01.03

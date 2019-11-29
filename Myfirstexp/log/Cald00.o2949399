@@ -1,0 +1,81 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 1420800
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 958553460 Feb 12 16:27 caldeira0_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4087 Feb 12 16:52 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo 480089340 Feb 12 16:54 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     37993 Feb 12 16:56 output00.02
+-rw-r--r-- 1 gcrystle lpo       126 Feb 12 16:56 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo     32289 Feb 12 16:58 output00.01
+-rw-r--r-- 1 gcrystle lpo      4085 Feb 12 16:58 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241088 Feb 12 16:59 croco
+Tue Feb 12 16:59:18 GMT 2019
+MPT ERROR: Rank 29(g:29) is aborting with error code 0.
+	Process ID: 14368, Host: r1i7n22, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Cal00/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT: Attaching to program: /proc/14368/exe, process 14368
+MPT: [Thread debugging using libthread_db enabled]
+MPT: Using host libthread_db library "/lib64/libthread_db.so.1".
+MPT: 0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: Missing separate debuginfos, use: zypper install glibc-debuginfo-2.19-38.2.x86_64 krb5-debuginfo-1.12.1-36.4.x86_64 libcom_err2-debuginfo-1.42.11-7.1.x86_64 libcurl4-debuginfo-7.37.0-31.1.x86_64 libcxgb3-rdmav2-debuginfo-1.3.1-6.2.x86_64 libgcc_s1-debuginfo-6.2.1+r239768-2.4.x86_64 libibverbs1-debuginfo-1.1.7-12.2.x86_64 libidn11-debuginfo-1.28-4.1.x86_64 libkeyutils1-debuginfo-1.5.9-3.29.x86_64 libldap-2_4-2-debuginfo-2.4.41-18.22.1.x86_64 libmlx4-rdmav2-debuginfo-1.0.5-11.2.x86_64 libmlx5-rdmav2-debuginfo-1.0.1-7.2.x86_64 libmthca-rdmav2-debuginfo-1.0.6-5.2.x86_64 libnl3-200-debuginfo-3.2.23-2.21.x86_64 libopenssl1_0_0-debuginfo-1.0.1i-52.1.x86_64 libpcre1-debuginfo-8.33-3.314.x86_64 libsasl2-3-debuginfo-2.1.26-7.1.x86_64 libselinux1-debuginfo-2.3-4.6.x86_64 libssh2-1-debuginfo-1.4.3-19.1.x86_64 libz1-debuginfo-1.2.8-5.1.x86_64
+MPT: (gdb) #0  0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: #1  0x00002aaaab55269c in mpi_sgi_system (command=<optimized out>, 
+MPT:     __statbuf=<optimized out>, __fd=<optimized out>) at sig.c:98
+MPT: #2  MPI_SGI_stacktraceback (header=<optimized out>) at sig.c:339
+MPT: #3  0x00002aaaab4aa6ee in print_traceback (ecode=0) at abort.c:227
+MPT: #4  0x00002aaaab4aa921 in PMPI_Abort (comm=<optimized out>, errorcode=0)
+MPT:     at abort.c:66
+MPT: #5  0x00002aaaab4aa97a in pmpi_abort__ ()
+MPT:    from /appli/mpt/2.15-p11386/lib/libmpi.so
+MPT: #6  0x000000000043858b in step2d_fb_tile_ ()
+MPT: #7  0x000000000042df4c in step2d_ ()
+MPT: #8  0x0000000000406f3d in step_ ()
+MPT: #9  0x0000000000406b86 in MAIN__ ()
+MPT: #10 0x000000000040582e in main ()
+MPT: (gdb) A debugging session is active.
+MPT: 
+MPT: 	Inferior 1 [process 14368] will be detached.
+MPT: 
+MPT: Quit anyway? (y or n) [answered Y; input not from terminal]
+MPT: Detaching from program: /proc/14368/exe, process 14368
+
+MPT: -----stack traceback ends-----
+MPT ERROR: MPI_COMM_WORLD rank 29 has terminated without calling MPI_Finalize()
+	aborting job
+0.004u 0.012s 2:39.89 0.0%	0+0k 0+8io 0pf+0w
+Tue Feb 12 17:01:58 GMT 2019
+total 1442816
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 958553460 Feb 12 16:27 caldeira0_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4087 Feb 12 16:52 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo     37993 Feb 12 16:56 output00.02
+-rw-r--r-- 1 gcrystle lpo       126 Feb 12 16:56 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo      4085 Feb 12 16:58 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241088 Feb 12 16:59 croco
+-rw-r--r-- 1 gcrystle lpo 480089340 Feb 12 16:59 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     32289 Feb 12 17:01 output00.01
+0.004u 0.012s 0:02.43 0.4%	0+0k 0+0io 0pf+0w
+Tue Feb 12 17:02:01 GMT 2019
+total 1434624
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 958553460 Feb 12 16:27 caldeira0_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4087 Feb 12 16:52 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo      4085 Feb 12 16:58 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241088 Feb 12 16:59 croco
+-rw-r--r-- 1 gcrystle lpo 480089340 Feb 12 16:59 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     32289 Feb 12 17:01 output00.01
+-rw-r--r-- 1 gcrystle lpo     37993 Feb 12 17:02 output00.02
+-rw-r--r-- 1 gcrystle lpo       126 Feb 12 17:02 nhmg_prof_rank0000.log

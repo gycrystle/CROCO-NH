@@ -1,0 +1,170 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+Tue May 14 08:39:21 GMT 2019
+total 16472320
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4131 May 13 11:37 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4187 May 13 11:37 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4187 May 13 11:37 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4187 May 13 11:37 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo    52892140 May 13 21:27 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        2752 May 13 21:27 output01.02
+-rw-r--r-- 1 gcrystle lpo        2752 May 13 21:27 output01.03
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.04
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.05
+-rw-r--r-- 1 gcrystle lpo          32 May 13 21:27 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.06
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+0.492u 3.012s 5:12:23.74 0.0%	0+0k 0+0io 0pf+0w
+Tue May 14 13:51:45 GMT 2019
+total 32749056
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        2752 May 13 21:27 output01.03
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.04
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.05
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.06
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:45 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:46 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:47 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:48 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo    52066640 May 14 13:51 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 13:51 caldeira_01_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 13:51 caldeira_01_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3674257 May 14 13:51 output01.02
+-rw-r--r-- 1 gcrystle lpo        3366 May 14 13:51 nhmg_prof_rank0000.log
+0.476u 3.036s 5:12:02.29 0.0%	0+0k 0+0io 0pf+0w
+Tue May 14 19:03:47 GMT 2019
+total 49150208
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.04
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.05
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.06
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:45 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:46 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:47 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:48 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 13:51 caldeira_01_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 13:51 caldeira_01_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3674257 May 14 13:51 output01.02
+-rw-r--r-- 1 gcrystle lpo    52066640 May 14 19:03 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 19:03 caldeira_01_his.0242.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 19:03 caldeira_01_avg.0242.nc
+-rw-r--r-- 1 gcrystle lpo     3674045 May 14 19:03 output01.03
+-rw-r--r-- 1 gcrystle lpo        3366 May 14 19:03 nhmg_prof_rank0000.log
+0.500u 3.036s 5:12:42.64 0.0%	0+0k 0+0io 0pf+0w
+Wed May 15 00:16:30 GMT 2019
+total 65551360
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.05
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.06
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:45 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:46 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:47 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:48 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 13:51 caldeira_01_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 13:51 caldeira_01_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3674257 May 14 13:51 output01.02
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 19:03 caldeira_01_his.0242.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 19:03 caldeira_01_avg.0242.nc
+-rw-r--r-- 1 gcrystle lpo     3674045 May 14 19:03 output01.03
+-rw-r--r-- 1 gcrystle lpo    52066640 May 15 00:16 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 00:16 caldeira_01_his.0363.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 00:16 caldeira_01_avg.0363.nc
+-rw-r--r-- 1 gcrystle lpo     3674098 May 15 00:16 output01.04
+-rw-r--r-- 1 gcrystle lpo        3366 May 15 00:16 nhmg_prof_rank0000.log
+0.456u 3.080s 5:13:06.97 0.0%	0+0k 0+0io 0pf+0w
+Wed May 15 05:29:37 GMT 2019
+total 81952512
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        2809 May 13 21:27 output01.06
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:45 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:46 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:47 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:48 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 13:51 caldeira_01_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 13:51 caldeira_01_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3674257 May 14 13:51 output01.02
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 19:03 caldeira_01_his.0242.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 19:03 caldeira_01_avg.0242.nc
+-rw-r--r-- 1 gcrystle lpo     3674045 May 14 19:03 output01.03
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 00:16 caldeira_01_his.0363.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 00:16 caldeira_01_avg.0363.nc
+-rw-r--r-- 1 gcrystle lpo     3674098 May 15 00:16 output01.04
+-rw-r--r-- 1 gcrystle lpo    52066640 May 15 05:29 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 05:29 caldeira_01_his.0484.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 05:29 caldeira_01_avg.0484.nc
+-rw-r--r-- 1 gcrystle lpo     3674469 May 15 05:29 output01.05
+-rw-r--r-- 1 gcrystle lpo        3366 May 15 05:29 nhmg_prof_rank0000.log
+0.416u 3.064s 5:12:56.90 0.0%	0+0k 0+0io 0pf+0w
+Wed May 15 10:42:34 GMT 2019
+total 98353664
+-rw-r--r-- 1 gcrystle lpo     3796523 May 13 11:37 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 May 13 11:37 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4113 May 13 16:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244472 May 13 16:14 croco
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 13 21:27 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 13 21:27 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3674201 May 13 21:27 output01.01
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:36 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:45 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:46 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:47 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4115 May 14 08:48 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 13:51 caldeira_01_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 13:51 caldeira_01_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3674257 May 14 13:51 output01.02
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 14 19:03 caldeira_01_his.0242.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 14 19:03 caldeira_01_avg.0242.nc
+-rw-r--r-- 1 gcrystle lpo     3674045 May 14 19:03 output01.03
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 00:16 caldeira_01_his.0363.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 00:16 caldeira_01_avg.0363.nc
+-rw-r--r-- 1 gcrystle lpo     3674098 May 15 00:16 output01.04
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 05:29 caldeira_01_his.0484.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 05:29 caldeira_01_avg.0484.nc
+-rw-r--r-- 1 gcrystle lpo     3674469 May 15 05:29 output01.05
+-rw-r--r-- 1 gcrystle lpo    52066640 May 15 10:42 caldeira_01_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700960 May 15 10:42 caldeira_01_his.0605.nc
+-rw-r--r-- 1 gcrystle lpo  6263017768 May 15 10:42 caldeira_01_avg.0605.nc
+-rw-r--r-- 1 gcrystle lpo     3674098 May 15 10:42 output01.06
+-rw-r--r-- 1 gcrystle lpo        3366 May 15 10:42 nhmg_prof_rank0000.log

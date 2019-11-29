@@ -1,0 +1,35 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+Running with 28 cores
+total 8704
+-rw-r--r-- 1 gcrystle lpo     4034 Dec 14 16:22 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     4036 Dec 14 16:23 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo 13027480 Dec 14 16:23 croco
+Fri Dec 14 16:23:48 GMT 2018
+2.772u 21.828s 4:27:58.08 0.1%	0+0k 0+0io 0pf+0w
+Fri Dec 14 20:51:46 GMT 2018
+total 11238400
+-rw-r--r-- 1 gcrystle lpo        4034 Dec 14 16:22 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4036 Dec 14 16:23 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo    13027480 Dec 14 16:23 croco
+-rw-r--r-- 1 gcrystle lpo    27061212 Dec 14 20:51 caldeira_00h_rst.nc
+-rw-r--r-- 1 gcrystle lpo 11079666432 Dec 14 20:51 caldeira_00h_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo   394265164 Dec 14 20:51 caldeira_00h_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21300661 Dec 14 20:51 output00h.01
+2.780u 23.004s 4:25:01.78 0.1%	0+0k 0+0io 0pf+0w
+Sat Dec 15 01:16:48 GMT 2018
+total 22095104
+-rw-r--r-- 1 gcrystle lpo        4034 Dec 14 16:22 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4036 Dec 14 16:23 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo    13027480 Dec 14 16:23 croco
+-rw-r--r-- 1 gcrystle lpo 11079666432 Dec 14 20:51 caldeira_00h_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21300661 Dec 14 20:51 output00h.01
+-rw-r--r-- 1 gcrystle lpo    26238784 Dec 15 01:16 caldeira_00h_rst.nc
+-rw-r--r-- 1 gcrystle lpo 11079666432 Dec 15 01:16 caldeira_00h_his.0361.nc
+-rw-r--r-- 1 gcrystle lpo   786875456 Dec 15 01:16 caldeira_00h_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21300630 Dec 15 01:16 output00h.02

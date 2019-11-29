@@ -1,0 +1,94 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+Sat May 11 16:44:26 GMT 2019
+total 13568
+-rw-r--r-- 1 gcrystle lpo  3796523 May 11 16:39 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo     4131 May 11 16:39 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo     4131 May 11 16:39 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo     4187 May 11 16:39 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo     4187 May 11 16:39 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo     4187 May 11 16:39 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo     1200 May 11 16:39 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     3366 May 11 16:39 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo     4129 May 11 16:40 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo 14244560 May 11 16:44 croco
+0.632u 3.748s 7:33:12.37 0.0%	0+0k 0+0io 0pf+0w
+Sun May 12 00:17:39 GMT 2019
+total 64877056
+-rw-r--r-- 1 gcrystle lpo     3796523 May 11 16:39 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo        1200 May 11 16:39 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4129 May 11 16:40 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244560 May 11 16:44 croco
+-rw-r--r-- 1 gcrystle lpo 41497089004 May 12 00:17 caldeira_01ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 24699529524 May 12 00:17 caldeira_01ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo   208775672 May 12 00:17 caldeira_01ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo     3683572 May 12 00:17 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 May 12 00:17 nhmg_prof_rank0000.log
+MPT ERROR: Rank 59(g:59) is aborting with error code 0.
+	Process ID: 52992, Host: r2i0n30, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_03_gls17_256/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 6(g:6) is aborting with error code 0.
+	Process ID: 40757, Host: r2i0n26, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_03_gls17_256/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 31(g:31) is aborting with error code 0.
+	Process ID: 26492, Host: r2i0n28, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_03_gls17_256/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: MPI_COMM_WORLD rank 49 has terminated without calling MPI_Finalize()
+	aborting job
+0.004u 0.008s 0:42.52 0.0%	0+0k 0+8io 0pf+0w
+Sun May 12 00:18:21 GMT 2019
+total 65217536
+-rw-r--r-- 1 gcrystle lpo     3796523 May 11 16:39 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo        1200 May 11 16:39 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4129 May 11 16:40 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244560 May 11 16:44 croco
+-rw-r--r-- 1 gcrystle lpo 41497089004 May 12 00:17 caldeira_01ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 24699529524 May 12 00:17 caldeira_01ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo   208775672 May 12 00:17 caldeira_01ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo     3683572 May 12 00:17 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 May 12 00:17 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo   344558764 May 12 00:18 caldeira_01ftke_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo       23200 May 12 00:18 output01.02
+0.008u 0.004s 0:02.23 0.0%	0+0k 0+0io 0pf+0w
+Sun May 12 00:18:24 GMT 2019
+total 65209600
+-rw-r--r-- 1 gcrystle lpo     3796523 May 11 16:39 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4131 May 11 16:39 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira5
+-rw-r--r-- 1 gcrystle lpo        4187 May 11 16:39 croco.in.Caldeira6
+-rw-r--r-- 1 gcrystle lpo        1200 May 11 16:39 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4129 May 11 16:40 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14244560 May 11 16:44 croco
+-rw-r--r-- 1 gcrystle lpo 41497089004 May 12 00:17 caldeira_01ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 24699529524 May 12 00:17 caldeira_01ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo   208775672 May 12 00:17 caldeira_01ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo     3683572 May 12 00:17 output01.01
+-rw-r--r-- 1 gcrystle lpo   344558764 May 12 00:18 caldeira_01ftke_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo       23200 May 12 00:18 output01.02
+-rw-r--r-- 1 gcrystle lpo       29312 May 12 00:18 output01.03
+-rw-r--r-- 1 gcrystle lpo         126 May 12 00:18 nhmg_prof_rank0000.log

@@ -1,0 +1,33 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 29292800
+-rw-r--r-- 1 gcrystle lpo    14900779 Jan 14 18:21 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Jan 14 18:21 nhmg_namelist
+-rwxr-xr-x 1 gcrystle lpo    14245344 Jan 15 09:06 croco
+-rw-r--r-- 1 gcrystle lpo   208775340 Jan 16 17:39 caldeira_00fin_rst.nc
+-rw-r--r-- 1 gcrystle lpo   928199300 Jan 16 17:39 caldeira_00fin_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo 28821172432 Jan 16 20:53 caldeira_00fin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     7474595 Jan 16 21:08 output00fin.01
+-rw-r--r-- 1 gcrystle lpo        4102 Jan 17 08:58 croco.in.Caldeira
+Thu Jan 17 09:00:01 GMT 2019
+1.172u 10.152s 35:56:08.89 0.0%	0+0k 0+0io 0pf+0w
+Fri Jan 18 20:56:09 GMT 2019
+total 56983040
+-rw-r--r-- 1 gcrystle lpo    14900779 Jan 14 18:21 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Jan 14 18:21 nhmg_namelist
+-rwxr-xr-x 1 gcrystle lpo    14245344 Jan 15 09:06 croco
+-rw-r--r-- 1 gcrystle lpo 28821172432 Jan 16 20:53 caldeira_00fin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     7474595 Jan 16 21:08 output00fin.01
+-rw-r--r-- 1 gcrystle lpo        4102 Jan 17 08:58 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo   205561872 Jan 18 20:56 caldeira_00fin_rst.nc
+-rw-r--r-- 1 gcrystle lpo 29061335368 Jan 18 20:56 caldeira_00fin_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  1130535512 Jan 18 20:56 caldeira_00fin_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     7481768 Jan 18 20:56 output00fin.02
+-rw-r--r-- 1 gcrystle lpo        3366 Jan 18 20:56 nhmg_prof_rank0000.log

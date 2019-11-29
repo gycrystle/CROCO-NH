@@ -1,0 +1,61 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 251392
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 241783036 Feb 12 12:00 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     25826 Feb 12 12:02 output00.01
+-rw-r--r-- 1 gcrystle lpo        64 Feb 12 12:02 output00.02
+-rw-r--r-- 1 gcrystle lpo      4086 Feb 12 12:08 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14245344 Feb 12 12:08 croco
+Tue Feb 12 12:08:30 GMT 2019
+MPT ERROR: Rank 23(g:23) is aborting with error code 0.
+	Process ID: 22185, Host: r1i3n28, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Cal00/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 59(g:59) is aborting with error code 0.
+	Process ID: 9491, Host: r1i3n30, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Cal00/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 31(g:31) is aborting with error code 0.
+	Process ID: 38763, Host: r1i3n29, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Cal00/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: MPI_COMM_WORLD rank 39 has terminated without calling MPI_Finalize()
+	aborting job
+0.012u 0.004s 2:09.74 0.0%	0+0k 0+8io 0pf+0w
+Tue Feb 12 12:10:40 GMT 2019
+total 273408
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        64 Feb 12 12:02 output00.02
+-rw-r--r-- 1 gcrystle lpo      4086 Feb 12 12:08 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14245344 Feb 12 12:08 croco
+-rw-r--r-- 1 gcrystle lpo 241783036 Feb 12 12:08 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     26744 Feb 12 12:10 output00.01
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 22437 Killed                  $mpicmdline_prefix -f $paramfile
+0.008u 0.004s 0:01.25 0.0%	0+0k 0+16io 0pf+0w
+Tue Feb 12 12:10:41 GMT 2019
+total 265472
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo      4086 Feb 12 12:08 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14245344 Feb 12 12:08 croco
+-rw-r--r-- 1 gcrystle lpo 241783036 Feb 12 12:08 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     26744 Feb 12 12:10 output00.01
+-rw-r--r-- 1 gcrystle lpo        64 Feb 12 12:10 output00.02

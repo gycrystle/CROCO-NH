@@ -1,0 +1,64 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+Fri Jun 14 14:42:03 GMT 2019
+total 1631232
+-rw-r--r-- 1 gcrystle lpo       1200 May 18 09:38 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo       3366 May 18 09:38 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo 1052632952 May 18 10:16 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  608836972 May 18 10:16 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo       4128 Jun 14 14:16 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo   14354552 Jun 14 14:42 croco
+MPT ERROR: MPI_COMM_WORLD rank 62 has terminated without calling MPI_Finalize()
+	aborting job
+0.000u 0.012s 1:42.56 0.0%	0+0k 0+8io 0pf+0w
+Fri Jun 14 14:43:46 GMT 2019
+total 1553152
+-rw-r--r-- 1 gcrystle lpo      1200 May 18 09:38 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo      3366 May 18 09:38 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo 608836972 May 18 10:16 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4128 Jun 14 14:16 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14354552 Jun 14 14:42 croco
+-rw-r--r-- 1 gcrystle lpo 958287152 Jun 14 14:43 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     31614 Jun 14 14:43 output01.01
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394:  2387 Killed                  $mpicmdline_prefix -f $paramfile
+0.000u 0.008s 0:01.03 0.0%	0+0k 0+16io 0pf+0w
+Fri Jun 14 14:43:47 GMT 2019
+total 1553152
+-rw-r--r-- 1 gcrystle lpo      1200 May 18 09:38 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo      3366 May 18 09:38 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo 608836972 May 18 10:16 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4128 Jun 14 14:16 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14354552 Jun 14 14:42 croco
+-rw-r--r-- 1 gcrystle lpo 958287152 Jun 14 14:43 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     31614 Jun 14 14:43 output01.01
+-rw-r--r-- 1 gcrystle lpo        64 Jun 14 14:43 output01.02
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394:  2483 Killed                  $mpicmdline_prefix -f $paramfile
+0.008u 0.000s 0:01.30 0.0%	0+0k 0+16io 0pf+0w
+Fri Jun 14 14:43:48 GMT 2019
+total 1553152
+-rw-r--r-- 1 gcrystle lpo      1200 May 18 09:38 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo      3366 May 18 09:38 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo 608836972 May 18 10:16 caldeira_01_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4128 Jun 14 14:16 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14354552 Jun 14 14:42 croco
+-rw-r--r-- 1 gcrystle lpo 958287152 Jun 14 14:43 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     31614 Jun 14 14:43 output01.01
+-rw-r--r-- 1 gcrystle lpo        64 Jun 14 14:43 output01.02
+-rw-r--r-- 1 gcrystle lpo        64 Jun 14 14:43 output01.03

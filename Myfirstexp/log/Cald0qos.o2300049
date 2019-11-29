@@ -1,0 +1,41 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+total 8704
+-rw-r--r-- 1 gcrystle lpo     1200 Dec 17 17:15 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     4041 Dec 17 17:17 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     4043 Dec 17 17:18 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo 14259680 Dec 17 17:33 croco
+Mon Dec 17 17:33:51 GMT 2018
+2.964u 20.256s 14:40:16.69 0.0%	0+0k 0+0io 0pf+0w
+Tue Dec 18 08:14:07 GMT 2018
+total 11239680
+-rw-r--r-- 1 gcrystle lpo        1200 Dec 17 17:15 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4041 Dec 17 17:17 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4043 Dec 17 17:18 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo    14259680 Dec 17 17:33 croco
+-rw-r--r-- 1 gcrystle lpo    27061408 Dec 18 08:14 caldeira_0qos_nh_rst.nc
+-rw-r--r-- 1 gcrystle lpo 11079666620 Dec 18 08:14 caldeira_0qos_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo   394265360 Dec 18 08:14 caldeira_0qos_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21835322 Dec 18 08:14 output0qos.01
+-rw-r--r-- 1 gcrystle lpo        3036 Dec 18 08:14 nhmg_prof_rank0000.log
+2.948u 19.052s 15:17:16.75 0.0%	0+0k 0+0io 0pf+0w
+Tue Dec 18 23:31:24 GMT 2018
+total 22096896
+-rw-r--r-- 1 gcrystle lpo        1200 Dec 17 17:15 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4041 Dec 17 17:17 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4043 Dec 17 17:18 croco.in.Caldeira2
+-rwxr-xr-x 1 gcrystle lpo    14259680 Dec 17 17:33 croco
+-rw-r--r-- 1 gcrystle lpo 11079666620 Dec 18 08:14 caldeira_0qos_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21835322 Dec 18 08:14 output0qos.01
+-rw-r--r-- 1 gcrystle lpo    26238980 Dec 18 23:31 caldeira_0qos_nh_rst.nc
+-rw-r--r-- 1 gcrystle lpo 11079666620 Dec 18 23:31 caldeira_0qos_his.0361.nc
+-rw-r--r-- 1 gcrystle lpo   786875652 Dec 18 23:31 caldeira_0qos_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo    21845993 Dec 18 23:31 output0qos.02
+-rw-r--r-- 1 gcrystle lpo        3036 Dec 18 23:31 nhmg_prof_rank0000.log

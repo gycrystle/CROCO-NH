@@ -1,0 +1,19 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+total 13056
+-rw-r--r-- 1 gcrystle lpo  3796523 Feb 28 10:42 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo     1200 Feb 28 10:42 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     4182 Feb 28 10:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     4184 Feb 28 10:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo     4184 Feb 28 10:48 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo     4184 Feb 28 10:50 croco.in.Caldeira4
+-rwxr-xr-x 1 gcrystle lpo 14311856 Feb 28 10:52 croco
+Thu Feb 28 10:52:06 GMT 2019
+Terminated

@@ -1,0 +1,81 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 412928
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan  8 14:46 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Jan  8 14:47 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo 106792104 Jan  8 17:02 caldeira_01xl_rst.nc
+-rw-r--r-- 1 gcrystle lpo  55006400 Jan  8 17:03 caldeira_01xl_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo 122629868 Jan  8 18:17 caldeira_01xl_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo 122629892 Jan  8 18:44 caldeira_test_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     13734 Jan  8 18:45 output01test.01
+-rw-r--r-- 1 gcrystle lpo      4095 Jan  8 18:47 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241248 Jan  8 18:47 croco
+Tue Jan  8 18:47:49 GMT 2019
+MPT ERROR: rank:0, function:MPI_WAIT, Message truncated on receive: An application bug caused the sender to send too much data
+MPT ERROR: Rank 0(g:0) is aborting with error code 0.
+	Process ID: 28745, Host: r1i6n20, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/cal01test/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT: Attaching to program: /proc/28745/exe, process 28745
+MPT: [Thread debugging using libthread_db enabled]
+MPT: Using host libthread_db library "/lib64/libthread_db.so.1".
+MPT: 0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: Missing separate debuginfos, use: zypper install glibc-debuginfo-2.19-38.2.x86_64 krb5-debuginfo-1.12.1-36.4.x86_64 libcom_err2-debuginfo-1.42.11-7.1.x86_64 libcurl4-debuginfo-7.37.0-31.1.x86_64 libcxgb3-rdmav2-debuginfo-1.3.1-6.2.x86_64 libgcc_s1-debuginfo-6.2.1+r239768-2.4.x86_64 libibverbs1-debuginfo-1.1.7-12.2.x86_64 libidn11-debuginfo-1.28-4.1.x86_64 libkeyutils1-debuginfo-1.5.9-3.29.x86_64 libldap-2_4-2-debuginfo-2.4.41-18.22.1.x86_64 libmlx4-rdmav2-debuginfo-1.0.5-11.2.x86_64 libmlx5-rdmav2-debuginfo-1.0.1-7.2.x86_64 libmthca-rdmav2-debuginfo-1.0.6-5.2.x86_64 libnl3-200-debuginfo-3.2.23-2.21.x86_64 libopenssl1_0_0-debuginfo-1.0.1i-52.1.x86_64 libpcre1-debuginfo-8.33-3.314.x86_64 libsasl2-3-debuginfo-2.1.26-7.1.x86_64 libselinux1-debuginfo-2.3-4.6.x86_64 libssh2-1-debuginfo-1.4.3-19.1.x86_64 libz1-debuginfo-1.2.8-5.1.x86_64
+MPT: (gdb) #0  0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: #1  0x00002aaaab55269c in mpi_sgi_system (command=<optimized out>, 
+MPT:     __statbuf=<optimized out>, __fd=<optimized out>) at sig.c:98
+MPT: #2  MPI_SGI_stacktraceback (header=<optimized out>) at sig.c:339
+MPT: #3  0x00002aaaab4aa6ee in print_traceback (ecode=0) at abort.c:227
+MPT: #4  0x00002aaaab4aa765 in MPI_SGI_abort () at abort.c:90
+MPT: #5  0x00002aaaab4e9d91 in errors_are_fatal (comm=<optimized out>, 
+MPT:     code=<optimized out>) at errhandler.c:230
+MPT: #6  0x00002aaaab4ea124 in MPI_SGI_error (comm=1, code=15) at errhandler.c:58
+MPT: #7  0x00002aaaab4a7811 in MPI_SGI_request_test (
+MPT:     request=0xcc4024 <messpass2d_tile_$REQ.0.1+4>, 
+MPT:     status=0xcc3f78 <messpass2d_tile_$STATUS.0.1+24>, set=0x7fffffff8464, 
+MPT:     rc=0x7fffffff8460) at req.c:1417
+MPT: #8  0x00002aaaab4a78f0 in MPI_SGI_request_wait (
+MPT:     request=0xcc4024 <messpass2d_tile_$REQ.0.1+4>, 
+MPT:     status=0xcc3f78 <messpass2d_tile_$STATUS.0.1+24>, set=0x7fffffff8464, 
+MPT:     gen_rc=0x7fffffff8460) at req.c:1674
+MPT: #9  0x00002aaaab56b3a6 in PMPI_Wait (
+MPT:     request=0xcc4024 <messpass2d_tile_$REQ.0.1+4>, 
+MPT:     status=0xcc3f78 <messpass2d_tile_$STATUS.0.1+24>) at wait.c:37
+MPT: #10 0x00002aaaab56b4b8 in pmpi_wait__ ()
+MPT:    from /appli/mpt/2.15-p11386/lib/libmpi.so
+MPT: #11 0x00000000004f6cae in messpass2d_tile_ ()
+MPT: #12 0x0000000000435b9e in step2d_fb_tile_ ()
+MPT: #13 0x000000000042ba8c in step2d_ ()
+MPT: #14 0x0000000000406f3d in step_ ()
+MPT: #15 0x0000000000406b86 in MAIN__ ()
+MPT: #16 0x000000000040582e in main ()
+MPT: (gdb) A debugging session is active.
+MPT: 
+MPT: 	Inferior 1 [process 28745] will be detached.
+MPT: 
+MPT: Quit anyway? (y or n) [answered Y; input not from terminal]
+MPT: Detaching from program: /proc/28745/exe, process 28745
+
+MPT: -----stack traceback ends-----
+MPT ERROR: MPI_COMM_WORLD rank 0 has terminated without calling MPI_Finalize()
+	aborting job
+0.008u 0.000s 0:31.96 0.0%	0+0k 0+16io 0pf+0w
+Tue Jan  8 18:48:21 GMT 2019
+total 434944
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan  8 14:46 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Jan  8 14:47 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo 106792104 Jan  8 17:02 caldeira_01xl_rst.nc
+-rw-r--r-- 1 gcrystle lpo  55006400 Jan  8 17:03 caldeira_01xl_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo 122629868 Jan  8 18:17 caldeira_01xl_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4095 Jan  8 18:47 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241248 Jan  8 18:47 croco
+-rw-r--r-- 1 gcrystle lpo 122629892 Jan  8 18:48 caldeira_test_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     13734 Jan  8 18:48 output01test.01

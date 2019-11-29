@@ -1,0 +1,36 @@
+#!/bin/csh
+#PBS -N Cald0qfin
+#PBS -q mpi_3
+#PBS -l mpiprocs=64
+#PBS -l walltime=48:00:00
+#PBS -j oe
+
+source /usr/share/Modules/3.2.10/init/csh
+module load NETCDF/4.3.3.1-mpt-intel2016
+
+module list
+
+setenv LD_LIBRARY_PATH ${HOME}/Codes/CROCO-NH/NHMG_LIB/lib:$LD_LIBRARY_PATH
+echo "NHMG library is in $LD_LIBRARY_PATH"
+
+# ${DATAWORK}
+set RUNEXP=/home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira0qfin
+set SOURCE=/home2/datahome/gcrystle/Codes/CROCO-NH/Myfirstexp
+
+set NBCORES=`cat $PBS_NODEFILE | wc -l`
+echo "Running with $NBCORES cores" 
+
+cd $RUNEXP
+cp $SOURCE/croco .
+
+ls -rtl
+date
+
+time mpiexec_mpt -np 64 ./croco  croco.in.Caldeira > output0qfin.01
+date
+ls -rtl
+
+time mpiexec_mpt -np 64 ./croco  croco.in.Caldeira2 > output0qfin.02
+date
+ls -rtl
+

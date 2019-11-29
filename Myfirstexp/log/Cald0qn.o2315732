@@ -1,0 +1,645 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 850688
+-rw-r--r-- 1 gcrystle lpo      1200 Dec 19 12:39 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo      4095 Dec 19 13:08 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo 481945832 Dec 19 14:06 caldeirasigma128_0qn_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  14900779 Dec 19 14:14 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 364654432 Dec 19 14:46 caldeiraboundaryproblem_0qn_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4094 Dec 19 15:00 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo    192471 Dec 19 15:00 output0qn.01
+-rwxr-xr-x 1 gcrystle lpo  14258152 Dec 19 15:07 croco
+Wed Dec 19 15:07:50 GMT 2018
+Terminated
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496BA0  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libmpi.so          00002AAAAB4A233A  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACCAC8  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496BAA  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB56B9B5  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D16  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAB14D733D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496C85  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D16  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libmpi.so          00002AAAAB4A7532  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libmpi.so          00002AAAAB4A7587  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libmpi.so          00002AAAAB4A219F  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libmpi.so          00002AAAAB4A20E8  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+libpthread.so.0    00002AAAAB81BB83  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496BC8  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496BA0  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D18  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D16  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496B50  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB56B957  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D16  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACCAC8  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D16  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACCAC8  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB4A8D18  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB57371D  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5536F8  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496C67  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAAB567126  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAB14D7558  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496C85  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+Unknown            00002AAAB14D709B  Unknown               Unknown  Unknown
+Unknown            00002AAAAB496C85  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+linux-vdso.so.1    00002AAAAAACC967  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADE38C7D  Unknown               Unknown  Unknown
+Unknown            00002AAAAB5736EF  Unknown               Unknown  Unknown
+MPT ERROR: MPI_COMM_WORLD rank 57 has terminated without calling MPI_Finalize()
+	aborting job

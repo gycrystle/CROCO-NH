@@ -1,0 +1,76 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+Mon Apr  1 09:39:15 GMT 2019
+total 351744
+-rw-r--r-- 1 gcrystle lpo  14900789 Apr  1 09:22 croco_grd40_4444444.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Apr  1 09:24 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo 344558788 Apr  1 09:37 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     25901 Apr  1 09:37 output01.01
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:37 output01.02
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:37 output01.03
+-rw-r--r-- 1 gcrystle lpo      4182 Apr  1 09:38 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14234680 Apr  1 09:39 croco
+MPT ERROR: Rank 22(g:22) is aborting with error code 0.
+	Process ID: 52910, Host: r1i1n1, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_256_gls17kwftke/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: Rank 36(g:36) is aborting with error code 0.
+	Process ID: 51206, Host: r1i1n3, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_256_gls17kwftke/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: MPI_COMM_WORLD rank 13 has terminated without calling MPI_Finalize()
+	aborting job
+0.012u 0.008s 2:12.54 0.0%	0+0k 0+8io 0pf+0w
+Mon Apr  1 09:41:28 GMT 2019
+total 373760
+-rw-r--r-- 1 gcrystle lpo  14900789 Apr  1 09:22 croco_grd40_4444444.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Apr  1 09:24 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:37 output01.02
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:37 output01.03
+-rw-r--r-- 1 gcrystle lpo      4182 Apr  1 09:38 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14234680 Apr  1 09:39 croco
+-rw-r--r-- 1 gcrystle lpo 344558788 Apr  1 09:39 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     33313 Apr  1 09:41 output01.01
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 53440 Killed                  $mpicmdline_prefix -f $paramfile
+0.004u 0.004s 0:01.10 0.0%	0+0k 0+16io 0pf+0w
+Mon Apr  1 09:41:29 GMT 2019
+total 373760
+-rw-r--r-- 1 gcrystle lpo  14900789 Apr  1 09:22 croco_grd40_4444444.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Apr  1 09:24 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:37 output01.03
+-rw-r--r-- 1 gcrystle lpo      4182 Apr  1 09:38 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14234680 Apr  1 09:39 croco
+-rw-r--r-- 1 gcrystle lpo 344558788 Apr  1 09:39 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     33313 Apr  1 09:41 output01.01
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:41 output01.02
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 53534 Killed                  $mpicmdline_prefix -f $paramfile
+0.000u 0.008s 0:01.27 0.0%	0+0k 0+16io 0pf+0w
+Mon Apr  1 09:41:30 GMT 2019
+total 373760
+-rw-r--r-- 1 gcrystle lpo  14900789 Apr  1 09:22 croco_grd40_4444444.nc
+-rw-r--r-- 1 gcrystle lpo      1200 Apr  1 09:24 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo      4182 Apr  1 09:38 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14234680 Apr  1 09:39 croco
+-rw-r--r-- 1 gcrystle lpo 344558788 Apr  1 09:39 caldeira_01_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     33313 Apr  1 09:41 output01.01
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:41 output01.02
+-rw-r--r-- 1 gcrystle lpo        64 Apr  1 09:41 output01.03

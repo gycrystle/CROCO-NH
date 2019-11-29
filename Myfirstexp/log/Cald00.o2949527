@@ -1,0 +1,61 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 1428992
+-rw-r--r-- 1 gcrystle lpo      1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo 958553460 Feb 12 16:27 caldeira0_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo      4087 Feb 12 16:52 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo 480089340 Feb 12 16:59 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     37993 Feb 12 17:02 output00.02
+-rw-r--r-- 1 gcrystle lpo       126 Feb 12 17:02 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo     32289 Feb 12 17:02 output00.01
+-rw-r--r-- 1 gcrystle lpo      4085 Feb 12 17:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14241088 Feb 12 17:06 croco
+Tue Feb 12 17:06:31 GMT 2019
+0.976u 7.076s 44:23:31.97 0.0%	0+0k 0+0io 0pf+0w
+Thu Feb 14 13:30:03 GMT 2019
+total 58318848
+-rw-r--r-- 1 gcrystle lpo        1200 Feb 12 11:07 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo    14900779 Feb 12 11:09 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo   958553460 Feb 12 16:27 caldeira0_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo        4085 Feb 12 17:06 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14241088 Feb 12 17:06 croco
+-rw-r--r-- 1 gcrystle lpo        4087 Feb 12 17:07 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo   412741792 Feb 14 13:29 caldeira_00_rst.nc
+-rw-r--r-- 1 gcrystle lpo 57895783740 Feb 14 13:29 caldeira_00_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo   412741872 Feb 14 13:29 caldeira_00_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     5006782 Feb 14 13:30 output00.01
+-rw-r--r-- 1 gcrystle lpo        3696 Feb 14 13:30 nhmg_prof_rank0000.log
+Terminated
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+libintlc.so.5      00002AAAADAF479D  Unknown               Unknown  Unknown
+libintlc.so.5      00002AAAADAF2637  Unknown               Unknown  Unknown
+Unknown            00002AAAAC1537C2  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC153616  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0AC635  Unknown               Unknown  Unknown
+libifcore.so.5     00002AAAAC0BE318  Unknown               Unknown  Unknown
+Unknown            00002AAAAB81E870  Unknown               Unknown  Unknown
+croco              000000000048F3D1  Unknown               Unknown  Unknown
+croco              000000000040722B  Unknown               Unknown  Unknown
+croco              0000000000406B86  Unknown               Unknown  Unknown
+croco              000000000040582E  Unknown               Unknown  Unknown
+libc.so.6          00002AAAADD68B25  Unknown               Unknown  Unknown
+croco              0000000000405739  Unknown               Unknown  Unknown
+MPT ERROR: MPI_COMM_WORLD rank 21 has terminated without calling MPI_Finalize()
+	aborting job

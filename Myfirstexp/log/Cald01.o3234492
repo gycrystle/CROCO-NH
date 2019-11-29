@@ -1,0 +1,134 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+Wed Mar  6 10:37:13 GMT 2019
+total 89582592
+-rw-r--r-- 1 gcrystle lpo        1200 Feb 26 15:30 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     3796523 Feb 26 16:01 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4174 Feb 27 09:27 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo  2820390660 Feb 27 09:39 caldeira_01gls_his.0004.nc
+-rw-r--r-- 1 gcrystle lpo       22838 Feb 27 09:56 output01.04
+-rw-r--r-- 1 gcrystle lpo      118046 Mar  4 14:21 output01.01a
+-rw-r--r-- 1 gcrystle lpo      112332 Mar  4 14:44 output01.01b
+-rw-r--r-- 1 gcrystle lpo  7624771604 Mar  4 14:46 caldeira_01gls_his.0006.nc
+-rw-r--r-- 1 gcrystle lpo       76475 Mar  4 16:33 output01.02a
+-rw-r--r-- 1 gcrystle lpo 36973272588 Mar  4 16:33 caldeira_01gls_his.0007.nc
+-rw-r--r-- 1 gcrystle lpo  8878088372 Mar  5 08:12 caldeira_01gls_his.0121w.nc
+-rw-r--r-- 1 gcrystle lpo  5849268396 Mar  5 08:12 caldeira_01gls_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo        4184 Mar  5 13:10 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo    52892464 Mar  5 13:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo  5118138068 Mar  5 13:52 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  3342622092 Mar  5 13:52 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo        4194 Mar  5 15:52 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283432 Mar  5 17:43 croco
+-rw-r--r-- 1 gcrystle lpo    52892472 Mar  6 07:19 caldeira_01glsup3_rst.nc
+-rw-r--r-- 1 gcrystle lpo 12638038684 Mar  6 07:19 caldeira_01glsup3_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  8355914708 Mar  6 07:19 caldeira_01glsup3_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3755138 Mar  6 07:19 output01.01
+-rw-r--r-- 1 gcrystle lpo       20933 Mar  6 07:19 output01.02
+-rw-r--r-- 1 gcrystle lpo        2771 Mar  6 07:19 output01.03
+-rw-r--r-- 1 gcrystle lpo          32 Mar  6 07:19 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo        4196 Mar  6 10:35 croco.in.Caldeira2
+MPT ERROR: Rank 6(g:6) is aborting with error code 0.
+	Process ID: 43288, Host: r1i7n18, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira01_gls/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT: Attaching to program: /proc/43288/exe, process 43288
+MPT: [Thread debugging using libthread_db enabled]
+MPT: Using host libthread_db library "/lib64/libthread_db.so.1".
+MPT: 0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: Missing separate debuginfos, use: zypper install glibc-debuginfo-2.19-38.2.x86_64 krb5-debuginfo-1.12.1-36.4.x86_64 libcom_err2-debuginfo-1.42.11-7.1.x86_64 libcurl4-debuginfo-7.37.0-31.1.x86_64 libcxgb3-rdmav2-debuginfo-1.3.1-6.2.x86_64 libgcc_s1-debuginfo-6.2.1+r239768-2.4.x86_64 libibverbs1-debuginfo-1.1.7-12.2.x86_64 libidn11-debuginfo-1.28-4.1.x86_64 libkeyutils1-debuginfo-1.5.9-3.29.x86_64 libldap-2_4-2-debuginfo-2.4.41-18.22.1.x86_64 libmlx4-rdmav2-debuginfo-1.0.5-11.2.x86_64 libmlx5-rdmav2-debuginfo-1.0.1-7.2.x86_64 libmthca-rdmav2-debuginfo-1.0.6-5.2.x86_64 libnl3-200-debuginfo-3.2.23-2.21.x86_64 libopenssl1_0_0-debuginfo-1.0.1i-52.1.x86_64 libpcre1-debuginfo-8.33-3.314.x86_64 libsasl2-3-debuginfo-2.1.26-7.1.x86_64 libselinux1-debuginfo-2.3-4.6.x86_64 libssh2-1-debuginfo-1.4.3-19.1.x86_64 libz1-debuginfo-1.2.8-5.1.x86_64
+MPT: (gdb) #0  0x00002aaaab81e41c in waitpid () from /lib64/libpthread.so.0
+MPT: #1  0x00002aaaab55269c in mpi_sgi_system (command=<optimized out>, 
+MPT:     __statbuf=<optimized out>, __fd=<optimized out>) at sig.c:98
+MPT: #2  MPI_SGI_stacktraceback (header=<optimized out>) at sig.c:339
+MPT: #3  0x00002aaaab4aa6ee in print_traceback (ecode=0) at abort.c:227
+MPT: #4  0x00002aaaab4aa921 in PMPI_Abort (comm=<optimized out>, errorcode=0)
+MPT:     at abort.c:66
+MPT: #5  0x00002aaaab4aa97a in pmpi_abort__ ()
+MPT:    from /appli/mpt/2.15-p11386/lib/libmpi.so
+MPT: #6  0x000000000043971b in step2d_fb_tile_ ()
+MPT: #7  0x000000000042f09c in step2d_ ()
+MPT: #8  0x0000000000406fad in step_ ()
+MPT: #9  0x0000000000406bec in MAIN__ ()
+MPT: #10 0x000000000040587e in main ()
+MPT: (gdb) A debugging session is active.
+MPT: 
+MPT: 	Inferior 1 [process 43288] will be detached.
+MPT: 
+MPT: Quit anyway? (y or n) [answered Y; input not from terminal]
+MPT: Detaching from program: /proc/43288/exe, process 43288
+
+MPT: -----stack traceback ends-----
+MPT ERROR: MPI_COMM_WORLD rank 6 has terminated without calling MPI_Finalize()
+	aborting job
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 43262 Killed                  $mpicmdline_prefix -f $paramfile
+0.240u 1.360s 6:13:51.90 0.0%	0+0k 0+24io 0pf+0w
+Wed Mar  6 16:51:05 GMT 2019
+total 98362368
+-rw-r--r-- 1 gcrystle lpo        1200 Feb 26 15:30 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     3796523 Feb 26 16:01 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4174 Feb 27 09:27 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo  2820390660 Feb 27 09:39 caldeira_01gls_his.0004.nc
+-rw-r--r-- 1 gcrystle lpo       22838 Feb 27 09:56 output01.04
+-rw-r--r-- 1 gcrystle lpo      118046 Mar  4 14:21 output01.01a
+-rw-r--r-- 1 gcrystle lpo      112332 Mar  4 14:44 output01.01b
+-rw-r--r-- 1 gcrystle lpo  7624771604 Mar  4 14:46 caldeira_01gls_his.0006.nc
+-rw-r--r-- 1 gcrystle lpo       76475 Mar  4 16:33 output01.02a
+-rw-r--r-- 1 gcrystle lpo 36973272588 Mar  4 16:33 caldeira_01gls_his.0007.nc
+-rw-r--r-- 1 gcrystle lpo  8878088372 Mar  5 08:12 caldeira_01gls_his.0121w.nc
+-rw-r--r-- 1 gcrystle lpo  5849268396 Mar  5 08:12 caldeira_01gls_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo        4184 Mar  5 13:10 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo    52892464 Mar  5 13:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo  5118138068 Mar  5 13:52 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  3342622092 Mar  5 13:52 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo        4194 Mar  5 15:52 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283432 Mar  5 17:43 croco
+-rw-r--r-- 1 gcrystle lpo 12638038684 Mar  6 07:19 caldeira_01glsup3_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  8355914708 Mar  6 07:19 caldeira_01glsup3_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3755138 Mar  6 07:19 output01.01
+-rw-r--r-- 1 gcrystle lpo        2771 Mar  6 07:19 output01.03
+-rw-r--r-- 1 gcrystle lpo          32 Mar  6 07:19 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo        4196 Mar  6 10:35 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo    52066972 Mar  6 16:26 caldeira_01glsup3_rst.nc
+-rw-r--r-- 1 gcrystle lpo  5431467268 Mar  6 16:48 caldeira_01glsup3_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  3551509292 Mar  6 16:48 caldeira_01glsup3_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     1622622 Mar  6 16:51 output01.02
+0.004u 0.000s 0:00.57 0.0%	0+0k 0+0io 0pf+0w
+Wed Mar  6 16:51:05 GMT 2019
+total 98362368
+-rw-r--r-- 1 gcrystle lpo        1200 Feb 26 15:30 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     3796523 Feb 26 16:01 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        4174 Feb 27 09:27 croco.in.Caldeira4
+-rw-r--r-- 1 gcrystle lpo  2820390660 Feb 27 09:39 caldeira_01gls_his.0004.nc
+-rw-r--r-- 1 gcrystle lpo       22838 Feb 27 09:56 output01.04
+-rw-r--r-- 1 gcrystle lpo      118046 Mar  4 14:21 output01.01a
+-rw-r--r-- 1 gcrystle lpo      112332 Mar  4 14:44 output01.01b
+-rw-r--r-- 1 gcrystle lpo  7624771604 Mar  4 14:46 caldeira_01gls_his.0006.nc
+-rw-r--r-- 1 gcrystle lpo       76475 Mar  4 16:33 output01.02a
+-rw-r--r-- 1 gcrystle lpo 36973272588 Mar  4 16:33 caldeira_01gls_his.0007.nc
+-rw-r--r-- 1 gcrystle lpo  8878088372 Mar  5 08:12 caldeira_01gls_his.0121w.nc
+-rw-r--r-- 1 gcrystle lpo  5849268396 Mar  5 08:12 caldeira_01gls_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo        4184 Mar  5 13:10 croco.in.Caldeira3
+-rw-r--r-- 1 gcrystle lpo    52892464 Mar  5 13:52 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo  5118138068 Mar  5 13:52 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  3342622092 Mar  5 13:52 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo        4194 Mar  5 15:52 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo    14283432 Mar  5 17:43 croco
+-rw-r--r-- 1 gcrystle lpo 12638038684 Mar  6 07:19 caldeira_01glsup3_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  8355914708 Mar  6 07:19 caldeira_01glsup3_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3755138 Mar  6 07:19 output01.01
+-rw-r--r-- 1 gcrystle lpo        4196 Mar  6 10:35 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo    52066972 Mar  6 16:26 caldeira_01glsup3_rst.nc
+-rw-r--r-- 1 gcrystle lpo  5431467268 Mar  6 16:48 caldeira_01glsup3_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  3551509292 Mar  6 16:48 caldeira_01glsup3_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     1622622 Mar  6 16:51 output01.02
+-rw-r--r-- 1 gcrystle lpo        2771 Mar  6 16:51 output01.03
+-rw-r--r-- 1 gcrystle lpo          32 Mar  6 16:51 nhmg_prof_rank0000.log

@@ -1,0 +1,27 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+Thu Mar 21 20:57:42 GMT 2019
+total 35914496
+-rw-r--r-- 1 gcrystle lpo     3796523 Feb 27 10:43 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Feb 27 10:44 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo 12638038672 Feb 28 01:10 caldeira_01gls_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  8355914696 Feb 28 01:10 caldeira_01gls_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3762688 Feb 28 01:10 output01.01
+-rw-r--r-- 1 gcrystle lpo        3366 Feb 28 01:10 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo        4184 Mar  4 11:16 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo   104871004 Mar  4 11:19 caldeira_01gls_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo       19304 Mar  4 11:19 output01.02
+-rwxr-xr-x 1 gcrystle lpo    14312256 Mar 21 10:26 croco
+-rw-r--r-- 1 gcrystle lpo    52892472 Mar 21 19:54 caldeira_01gls_rst.nc
+-rw-r--r-- 1 gcrystle lpo  9400303700 Mar 21 20:31 caldeira_01glskw_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6197413724 Mar 21 20:31 caldeira_01glskw_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     2794184 Mar 21 20:32 output01.0123
+-rw-r--r-- 1 gcrystle lpo        4172 Mar 21 20:57 croco.in.Caldeira
+Terminated

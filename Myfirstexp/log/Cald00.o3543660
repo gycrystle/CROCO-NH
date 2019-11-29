@@ -1,0 +1,99 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 28 cores
+total 12800
+-rw-r--r-- 1 gcrystle lpo  3796523 Mar 27 14:44 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo     1200 Mar 27 14:45 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo     4186 Mar 27 14:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo     4188 Mar 27 14:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo     4188 Mar 27 14:47 croco.in.Caldeira3
+-rwxr-xr-x 1 gcrystle lpo 14238688 Mar 27 14:58 croco
+Wed Mar 27 14:58:39 GMT 2019
+0.456u 2.952s 13:56:24.62 0.0%	0+0k 0+0io 0pf+0w
+total 16356096
+-rw-r--r-- 1 gcrystle lpo     3796523 Mar 27 14:44 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar 27 14:45 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4186 Mar 27 14:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira3
+-rwxr-xr-x 1 gcrystle lpo    14238688 Mar 27 14:58 croco
+-rw-r--r-- 1 gcrystle lpo    52892176 Mar 28 04:55 caldeira_00ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo 10527700996 Mar 28 04:55 caldeira_00ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017804 Mar 28 04:55 caldeira_00ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3765307 Mar 28 04:55 output00.01
+-rw-r--r-- 1 gcrystle lpo        3366 Mar 28 04:55 nhmg_prof_rank0000.log
+Thu Mar 28 04:55:03 GMT 2019
+MPT ERROR: Rank 6(g:6) is aborting with error code 0.
+	Process ID: 19152, Host: r1i7n14, Program: /home/datawork-lops-osi/gcrystle/Caldeira_exp/Caldeira00_gls17ftke/croco
+	MPT Version: SGI MPT 2.15  12/18/16 02:51:49
+
+MPT: --------stack traceback-------
+MPT ERROR: MPI_COMM_WORLD rank 10 has terminated without calling MPI_Finalize()
+	aborting job
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 19126 Killed                  $mpicmdline_prefix -f $paramfile
+0.388u 2.464s 11:44:18.71 0.0%	0+0k 0+16io 0pf+0w
+Thu Mar 28 16:39:22 GMT 2019
+total 30157824
+-rw-r--r-- 1 gcrystle lpo     3796523 Mar 27 14:44 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar 27 14:45 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4186 Mar 27 14:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira3
+-rwxr-xr-x 1 gcrystle lpo    14238688 Mar 27 14:58 croco
+-rw-r--r-- 1 gcrystle lpo 10527700996 Mar 28 04:55 caldeira_00ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017804 Mar 28 04:55 caldeira_00ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3765307 Mar 28 04:55 output00.01
+-rw-r--r-- 1 gcrystle lpo        3366 Mar 28 04:55 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo    52066676 Mar 28 16:04 caldeira_00ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo  8787655716 Mar 28 16:32 caldeira_00ftke_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  5219252524 Mar 28 16:32 caldeira_00ftke_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3171955 Mar 28 16:39 output00.02
+0.004u 0.004s 0:00.45 0.0%	0+0k 0+0io 0pf+0w
+Thu Mar 28 16:39:22 GMT 2019
+total 30157824
+-rw-r--r-- 1 gcrystle lpo     3796523 Mar 27 14:44 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar 27 14:45 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4186 Mar 27 14:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira3
+-rwxr-xr-x 1 gcrystle lpo    14238688 Mar 27 14:58 croco
+-rw-r--r-- 1 gcrystle lpo 10527700996 Mar 28 04:55 caldeira_00ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017804 Mar 28 04:55 caldeira_00ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3765307 Mar 28 04:55 output00.01
+-rw-r--r-- 1 gcrystle lpo    52066676 Mar 28 16:04 caldeira_00ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo  8787655716 Mar 28 16:32 caldeira_00ftke_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  5219252524 Mar 28 16:32 caldeira_00ftke_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3171955 Mar 28 16:39 output00.02
+-rw-r--r-- 1 gcrystle lpo       21017 Mar 28 16:39 output00.03
+-rw-r--r-- 1 gcrystle lpo         126 Mar 28 16:39 nhmg_prof_rank0000.log
+MPT ERROR: STDOUT or STDERR buffer exhausted.
+	Set MPI_UNBUFFERED_STDIO=true or output no more than about 8192
+	characters between newlines.
+
+	(SGI MPT 2.15  12/18/16 02:52:47)
+/appli/mpt/2.15-p11386/bin/mpiexec_mpt: line 394: 41856 Killed                  $mpicmdline_prefix -f $paramfile
+0.000u 0.004s 0:00.30 0.0%	0+0k 0+16io 0pf+0w
+Thu Mar 28 16:39:23 GMT 2019
+total 30157824
+-rw-r--r-- 1 gcrystle lpo     3796523 Mar 27 14:44 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo        1200 Mar 27 14:45 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo        4186 Mar 27 14:46 croco.in.Caldeira
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira2
+-rw-r--r-- 1 gcrystle lpo        4188 Mar 27 14:47 croco.in.Caldeira3
+-rwxr-xr-x 1 gcrystle lpo    14238688 Mar 27 14:58 croco
+-rw-r--r-- 1 gcrystle lpo 10527700996 Mar 28 04:55 caldeira_00ftke_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo  6263017804 Mar 28 04:55 caldeira_00ftke_avg.0000.nc
+-rw-r--r-- 1 gcrystle lpo     3765307 Mar 28 04:55 output00.01
+-rw-r--r-- 1 gcrystle lpo    52066676 Mar 28 16:04 caldeira_00ftke_rst.nc
+-rw-r--r-- 1 gcrystle lpo  8787655716 Mar 28 16:32 caldeira_00ftke_his.0121.nc
+-rw-r--r-- 1 gcrystle lpo  5219252524 Mar 28 16:32 caldeira_00ftke_avg.0121.nc
+-rw-r--r-- 1 gcrystle lpo     3171955 Mar 28 16:39 output00.02
+-rw-r--r-- 1 gcrystle lpo       21017 Mar 28 16:39 output00.03
+-rw-r--r-- 1 gcrystle lpo         126 Mar 28 16:39 nhmg_prof_rank0000.log
+-rw-r--r-- 1 gcrystle lpo          16 Mar 28 16:39 output00.04

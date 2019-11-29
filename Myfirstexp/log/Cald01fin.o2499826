@@ -1,0 +1,27 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+module: Command not found.
+module: Command not found.
+Currently Loaded Modulefiles:
+  1) ncview/2.1.7__gcc-6.3.0        3) intel-fc-16/16.0.4.258
+  2) mpt/2.15                       4) NETCDF/4.3.3.1-mpt-intel2016
+NHMG library is in /home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib:/appli/NETCDF/4.3.3.1-mpt-intel/lib:/appli/intel/parallel_studio/parallel_studio_xe_2016_update4/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/appli/mpt/2.15-p11386/lib:/home2/datahome/gcrystle/Codes/CROCO-NH/NHMG_LIB/lib
+Running with 84 cores
+total 15104
+-rw-r--r-- 1 gcrystle lpo     1200 Jan 14 09:26 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo    18069 Jan 14 17:12 output01fin.01
+-rw-r--r-- 1 gcrystle lpo 14900779 Jan 14 17:21 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo     4098 Jan 14 17:21 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo 14249440 Jan 14 17:36 croco
+Mon Jan 14 17:36:26 GMT 2019
+MPT ERROR: MPI_COMM_WORLD rank 60 has terminated without calling MPI_Finalize()
+	aborting job
+0.008u 0.000s 0:24.85 0.0%	0+0k 0+8io 0pf+0w
+Mon Jan 14 17:36:51 GMT 2019
+total 222464
+-rw-r--r-- 1 gcrystle lpo      1200 Jan 14 09:26 nhmg_namelist
+-rw-r--r-- 1 gcrystle lpo  14900779 Jan 14 17:21 croco_grd.nc
+-rw-r--r-- 1 gcrystle lpo      4098 Jan 14 17:21 croco.in.Caldeira
+-rwxr-xr-x 1 gcrystle lpo  14249440 Jan 14 17:36 croco
+-rw-r--r-- 1 gcrystle lpo 189653544 Jan 14 17:36 caldeira_01fin_his.0000.nc
+-rw-r--r-- 1 gcrystle lpo     18069 Jan 14 17:36 output01fin.01
