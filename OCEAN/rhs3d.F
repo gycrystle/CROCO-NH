@@ -73,25 +73,81 @@
 # ifdef MRL_WCI
       real vstu,dudx,dvdx,ustv,dude,dvde
 # endif
+!!!! 29/11/2019, @gyc : vadv
+!--------------------------------------------------------------------
+! Definition of flux operators: 1st, 2nd, 3rd, 4th, 5th or 6th order,
+! used in UP5 and C6 advection schemes (and order degradation near 
+! land masks). cdiff is part of laplacian diffusion in flux1 (used 
+! near mask): 
+!    0 --> flux1=flux2 (second order C2 advection scheme)
+!    1 --> flux1 gives 1st order monotonic UP1 advection scheme
+!--------------------------------------------------------------------
+!
+# if defined UV_HADV_WENO5 || defined UV_HADV_C6 || defined UV_HADV_UP5 \
+  || defined UV_VADV_WENO5 || defined UV_VADV_C6 || defined UV_VADV_UP5
+
+      REAL    :: q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2
+      REAL    :: ua, vel, cdiff, cdif
+      REAL    :: flux1, flux2, flux3, flux4, flux5, flux6
+      REAL    :: flx2, flx3, flx4, flx5
+      REAL    :: mask0, mask1, mask2, mask3
+
+      flux2(q_im1, q_i, ua, cdiff) = 0.5*( q_i + q_im1 )
+
+      flux1(q_im1, q_i, ua, cdiff) = flux2(q_im1, q_i, ua, cdiff) -
+     &      0.5*cdiff*sign(1.,ua)*(q_i-q_im1)
+
+      flux4(q_im2, q_im1, q_i, q_ip1, ua) = 
+     &      ( 7.*(q_i + q_im1) - (q_ip1 + q_im2) )/12.0
+
+      flux3(q_im2, q_im1, q_i, q_ip1, ua) =
+     &      flux4(q_im2, q_im1, q_i, q_ip1, ua) +
+     &      sign(1.,ua)*((q_ip1 -
+     &      q_im2)-3.*(q_i-q_im1))/12.0
+
+      flux6(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua) =
+     &      ( 37.*(q_i+q_im1) - 8.*(q_ip1+q_im2)
+     &      +(q_ip2+q_im3) )/60.0
+
+      flux5(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua) =
+     &      flux6(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua)
+     &      -sign(1.,ua)*( 
+     &      (q_ip2-q_im3)-5.*(q_ip1-q_im2)+10.*(q_i-q_im1) )/60.0
+# endif
+# if  defined UV_HADV_WENO5 || defined UV_VADV_WENO5
+      REAL    :: flux3_weno, flux5_weno
+# endif
+!
+!!!! end of 29/11/2019, @gyc : vadv
 !
 # include "compute_auxiliary_bounds.h"
 !
-#ifdef MASKING
-# define SWITCH *
-#else
-# define SWITCH !
-#endif
+# ifdef MASKING
+#  define SWITCH *
+# else
+#  define SWITCH !
+# endif
 !
+# if defined UV_HADV_TVD || defined UV_VADV_TVD
+      if(nrhs.eq.3) then
+        cdt =     dt                 !<-- Corrector
+      elseif(FIRST_TIME_STEP) then
+        cdt = 0.5*dt
+      else
+        cdt = (1.-1./6.)*dt        !<-- Predictor
+      endif
+# endif
+
 # ifdef BODYFORCE
-#  define Uwrk UFx
-#  define Vwrk VFe
-#  define wrk UFe
-!
 !====================================================================
 !
 !  Apply surface and bottom stresses as body forces if selected
 !
 !====================================================================
+!
+#  define Uwrk UFx
+#  define Vwrk VFe
+#  define wrk  UFe
 !
 !  Apply surface stress as a bodyforce: determine the thickness [m]
 !  of the surface layer; then add in surface stress as a bodyfoce.
@@ -209,19 +265,26 @@
      &                                                             )
 #  ifdef MRL_WCI
 #    if defined CURVGRID && defined UV_ADV
-             cff1=0.5*Hz(i,j,k)*(
+            cff1=0.5*Hz(i,j,k)*(
      &           0.5*( dndx(i,j)*(vst(i,j,k)+vst(i,j+1,k))
      &                -dmde(i,j)*(ust(i,j,k)+ust(i+1,j,k)) ))
 #    else
-          cff1 = 0.0
+            cff1 = 0.0
 #    endif
             UFx(i,j)=(cff+cff1)*(v(i,j,k,nrhs)+v(i,j+1,k,nrhs))  
-            UFe(i,j)=cff*(vst(i,j,k)+vst(i,j+1,k))
             VFe(i,j)=(cff+cff1)*(u(i,j,k,nrhs)+u(i+1,j,k,nrhs))
+            UFe(i,j)=cff*(vst(i,j,k)+vst(i,j+1,k))
             VFx(i,j)=cff*(ust(i,j,k)+ust(i+1,j,k))
 #  else
             UFx(i,j)=cff*(v(i,j,k,nrhs)+v(i,j+1,k,nrhs))
             VFe(i,j)=cff*(u(i,j,k,nrhs)+u(i+1,j,k,nrhs))
+#   if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_VRT || \
+       defined DIAGNOSTICS_EK || defined DIAGNOSTICS_PV
+            UFxCor(i,j)=0.5*Hz(i,j,k)*fomn(i,j)
+     &                 *(v(i,j,k,nrhs)+v(i,j+1,k,nrhs))
+            VFeCor(i,j)=0.5*Hz(i,j,k)*fomn(i,j)
+     &                 *(u(i,j,k,nrhs)+u(i+1,j,k,nrhs))
+#   endif
 #  endif
           enddo
         enddo
@@ -233,14 +296,74 @@
      &                         +0.5*(UFe(i,j)+UFe(i-1,j))
 #  endif
 
-#  ifdef DIAGNOSTICS_UV
+# if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL || defined DIAGNOSTICS_PV
             if (nnew.ne.3) then
-              MCor(i,j,k,1) = 0.5*(UFx(i,j)+UFx(i-1,j)) 
+# if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL
+              MCor(i,j,k,1) = 0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                        SWITCH umask(i,j)
+# endif
+              MXadv(i,j,k,1) = (0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
      &                        SWITCH umask(i,j)
 #   ifdef MRL_WCI
               MStCo(i,j,k,1) = 0.5*(UFe(i,j)+UFe(i-1,j))
      &                        SWITCH umask(i,j)
 #   endif
+            endif
+# elif defined DIAGNOSTICS_EK
+            if (nnew.ne.3) then
+              if (k.eq.1) then
+                ekwrkCor(i,j,1) = 0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+                ekwrkHadv(i,j,1) = (0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+              else
+                ekwrkCor(i,j,1)=ekwrkCor(i,j,1)
+     &                         +0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+                ekwrkHadv(i,j,1)=ekwrkHadv(i,j,1)
+     &                       +(0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+              endif
+# if defined DIAGNOSTICS_EK_MLD
+              if (k.eq.kbl(i,j)) then
+                ekwrkCor_mld(i,j,1)=0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+                ekwrkHadv_mld(i,j,1)=(0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+              elseif (k.gt.kbl(i,j)) then
+                ekwrkCor_mld(i,j,1)=ekwrkCor_mld(i,j,1)
+     &                         +0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+                ekwrkHadv_mld(i,j,1)=ekwrkHadv_mld(i,j,1)
+     &                       +(0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                    * u(i,j,k,nrhs) SWITCH umask(i,j)
+              endif
+# endif
+            endif
+#  endif
+#  if defined DIAGNOSTICS_VRT && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+              if (k.eq.1) then
+                wrkCor(i,j,1) = 0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                        SWITCH umask(i,j)
+                wrkXadv(i,j,1) = (0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                        SWITCH umask(i,j)
+              else
+                wrkCor(i,j,1) = wrkCor(i,j,1) 
+     &                        + 0.5*(UFxCor(i,j)+UFxCor(i-1,j))
+     &                        SWITCH umask(i,j)
+                wrkXadv(i,j,1) = wrkXadv(i,j,1)
+     &                       +(0.5*(UFx(i,j)+UFx(i-1,j))
+     &                       - 0.5*(UFxCor(i,j)+UFxCor(i-1,j)))
+     &                        SWITCH umask(i,j)
+
+              endif
             endif
 #  endif
           enddo
@@ -253,14 +376,73 @@
      &                         -0.5*(VFx(i,j)+VFx(i,j-1))
 #  endif
 
-#  ifdef DIAGNOSTICS_UV
+# if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL
             if (nnew.ne.3) then
-              MCor(i,j,k,2) = -0.5*(VFe(i,j)+VFe(i,j-1))
+              MCor(i,j,k,2) = -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                        SWITCH vmask(i,j)
+              MXadv(i,j,k,2) = (-0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
      &                        SWITCH vmask(i,j)
 #   ifdef MRL_WCI
               MStCo(i,j,k,2) = -0.5*(VFx(i,j)+VFx(i,j-1))
      &                        SWITCH vmask(i,j)
 #   endif
+            endif
+# elif defined DIAGNOSTICS_EK
+            if (nnew.ne.3) then
+              if (k.eq.1) then
+              ekwrkCor(i,j,2) = -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              ekwrkHadv(i,j,2) = (-0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              else
+              ekwrkCor(i,j,2)=ekwrkCor(i,j,2)
+     &                     -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              ekwrkHadv(i,j,2)=ekwrkHadv(i,j,2) + (
+     &                        -0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              endif
+# if defined DIAGNOSTICS_EK_MLD
+              if (k.eq.kbl(i,j)) then
+              ekwrkCor_mld(i,j,2)=
+     &                     -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              ekwrkHadv_mld(i,j,2)=(
+     &                        -0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              elseif (k.gt.kbl(i,j)) then
+              ekwrkCor_mld(i,j,2)=ekwrkCor_mld(i,j,2)
+     &                     -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              ekwrkHadv_mld(i,j,2)=ekwrkHadv_mld(i,j,2) + (
+     &                        -0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                     * v(i,j,k,nrhs) SWITCH vmask(i,j)
+              endif
+# endif
+            endif
+#  endif
+# if defined DIAGNOSTICS_VRT && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+              if (k.eq.1) then
+                wrkCor(i,j,2) = -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                        SWITCH vmask(i,j)
+                wrkXadv(i,j,2) = (-0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                        SWITCH vmask(i,j)
+              else
+                wrkCor(i,j,2) = wrkCor(i,j,2) 
+     &                        -0.5*(VFeCor(i,j)+VFeCor(i,j-1))
+     &                        SWITCH vmask(i,j)
+                wrkXadv(i,j,2) = wrkXadv(i,j,2) + (
+     &                       -0.5*(VFe(i,j)+VFe(i,j-1))
+     &                       +0.5*(VFeCor(i,j)+VFeCor(i,j-1)))
+     &                        SWITCH vmask(i,j)
+              endif
             endif
 #  endif
           enddo
@@ -304,11 +486,89 @@
 !
 !======================================================================
 !
-#  if !(defined UV_HADV_UP3 || defined UV_HADV_C4 || defined UV_HADV_C2)
+#  if !(defined UV_HADV_UP3 || defined UV_HADV_C4  || \
+        defined UV_HADV_C2  || defined UV_HADV_UP5 || \
+        defined UV_HADV_C6  || defined UV_HADV_WENO5 )
 #   define UV_HADV_UP3
+! why ?
 #  endif
+!!!! 01/12/2019 @gyc: adding 5th order hadv 
+#  if defined UV_HADV_UP5 || defined UV_HADV_C6 || defined UV_HADV_WENO5
+!
+!----------------------------------------------------------------------
+! 5th or 6th order or WENO5 advection schemes
+!----------------------------------------------------------------------
+!
+#   ifdef UV_HADV_WENO5
+#    define FLUX5 flux5_weno
+#    define FLUX3 flux3_weno
+#    define FLUX2 flux1
+#    define UP5_MASKING
+          cdif=1.
+#    include "u_hadv_order5.h"
+#    include "v_hadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+#    undef UP5_MASKING
 
-#  if defined UV_HADV_UP3 || defined UV_HADV_C4
+#   else  /* C6 or UP5 */
+
+        if (nnew.eq.3) then  ! predictor
+#    define FLUX5 flux6
+#    define FLUX3 flux4
+#    define FLUX2 flux2
+#    undef  UP5_MASKING
+          cdif=0. 
+#    include "u_hadv_order5.h"
+#    include "v_hadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        else                 ! corrector
+#    if UV_HADV_C6
+#     define FLUX5 flux6
+#     define FLUX3 flux4
+#     define FLUX2 flux2
+#     undef  UP5_MASKING
+          cdif=0.
+#    else
+#     define FLUX5 flux5
+#     define FLUX3 flux3
+#     define FLUX2 flux2
+#     define UP5_MASKING
+          cdif=0.5
+#    endif
+
+#    include "u_hadv_order5.h"
+#    include "v_hadv_order5.h"
+
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+#    undef UP5_MASKING
+
+#    if defined UV_HADV_UP5
+#      if defined DIAGNOSTICS_UV  || defined DIAGNOSTICS_EK  || \
+        defined DIAGNOSTICS_VRT || defined DIAGNOSTICS_PV
+#        define FLUX5 flux6
+#        define FLUX3 flux4
+#        define FLUX2 flux2
+           cdif=0.
+#          include "uhdiff_order5.h"
+#          include "vhdiff_order5.h"
+#        undef FLUX5
+#        undef FLUX3
+#        undef FLUX2
+#      endif
+#    endif
+
+
+
+        endif
+#   endif /* WENO5 */
+!!!! end of 01/12/2019 @gyc: adding 5th order hadv 
+#  elif defined UV_HADV_UP3 || defined UV_HADV_C4 
 !
 !----------------------------------------------------------
 ! Fourth or Third order advection scheme (default)
@@ -334,7 +594,8 @@
 #    else
 #     define IU_EXT_RANGE max(IstrU-1,2),min(Iend+1,Lm)
 #    endif
-#   endif
+#   endif 
+!/* EW_PERIODIC */
         do j=Jstr,Jend
           do i=IU_EXT_RANGE
             uxx(i,j)=(u(i-1,j,k,nrhs)-2.*u(i,j,k,nrhs)
@@ -397,6 +658,15 @@
      &                  )*( Huon(i,j,k)+Huon(i+1,j,k)
      &                      -0.125*(Huxx(i,j)+Huxx(i+1,j)))
 #   else
+#     if defined DIAGNOSTICS_UV  || defined DIAGNOSTICS_EK || \
+         defined DIAGNOSTICS_VRT || defined DIAGNOSTICS_PV
+            if (nnew.ne.3) then
+            UFx4(i,j)=0.25*( u(i,j,k,nrhs)+u(i+1,j,k,nrhs)
+     &                         -0.125*(uxx(i,j)+uxx(i+1,j))
+     &                  )*( Huon(i,j,k)+Huon(i+1,j,k)
+     &                      -0.125*(Huxx(i,j)+Huxx(i+1,j)))
+            endif
+#     endif
             cffX=u(i,j,k,nrhs)+u(i+1,j,k,nrhs)
             if (cffX.gt.0.) then
               curvX=uxx(i,j)
@@ -412,7 +682,8 @@
 #   undef uxx
 
 #   define vee wrk1
-#   define Hvee wrk2      
+#   define Hvee wrk2
+      
 #   ifdef NS_PERIODIC
 #    define JV_EXT_RANGE JstrV-1,Jend+1
 #   else
@@ -494,6 +765,15 @@
      &                  )*( Hvom(i,j,k)+Hvom(i,j+1,k)
      &                      -0.125*(Hvee(i,j)+Hvee(i,j+1)))
 #   else
+#     if defined DIAGNOSTICS_UV  || defined DIAGNOSTICS_EK || \
+         defined DIAGNOSTICS_VRT || defined DIAGNOSTICS_PV
+            if (nnew.ne.3) then
+            VFe4(i,j)=0.25*( v(i,j,k,nrhs)+v(i,j+1,k,nrhs)
+     &                        -0.125*(vee(i,j)+vee(i,j+1))
+     &                  )*( Hvom(i,j,k)+Hvom(i,j+1,k)
+     &                      -0.125*(Hvee(i,j)+Hvee(i,j+1)))
+            endif
+#     endif
             cffE=v(i,j,k,nrhs)+v(i,j+1,k,nrhs)
             if (cffE.gt.0.) then
               curvE=vee(i,j)
@@ -579,12 +859,21 @@
         enddo
         do j=Jstr,Jend+1
           do i=IstrU,Iend
-#   ifdef UV_HADV_C4
+#   if defined UV_HADV_C4
             UFe(i,j)=0.25*( u(i,j,k,nrhs)+u(i,j-1,k,nrhs)
      &                        -0.125*(uee(i,j)+uee(i,j-1))
      &                  )*( Hvom(i,j,k)+Hvom(i-1,j,k)
      &                     -0.125*(Hvxx(i,j)+Hvxx(i-1,j)))
 #   else
+#     if defined DIAGNOSTICS_UV  || defined DIAGNOSTICS_EK  || \
+         defined DIAGNOSTICS_VRT || defined DIAGNOSTICS_PV
+            if (nnew.ne.3) then
+            UFe4(i,j)=0.25*( u(i,j,k,nrhs)+u(i,j-1,k,nrhs)
+     &                        -0.125*(uee(i,j)+uee(i,j-1))
+     &                  )*( Hvom(i,j,k)+Hvom(i-1,j,k)
+     &                     -0.125*(Hvxx(i,j)+Hvxx(i-1,j)))
+            endif
+#     endif
             cffX=u(i,j,k,nrhs)+u(i,j-1,k,nrhs)
             cffE=Hvom(i,j,k)+Hvom(i-1,j,k)
             if (cffE.gt.0.) then
@@ -671,12 +960,21 @@
         enddo
         do j=JstrV,Jend
           do i=Istr,Iend+1
-#   ifdef UV_HADV_C4
+#   if defined  UV_HADV_C4
             VFx(i,j)=0.25*( v(i,j,k,nrhs)+v(i-1,j,k,nrhs)
      &                        -0.125*(vxx(i,j)+vxx(i-1,j))
      &                  )*( Huon(i,j,k)+Huon(i,j-1,k)
      &                     -0.125*(Huee(i,j)+Huee(i,j-1)))
 #   else
+#     if defined DIAGNOSTICS_UV  || defined DIAGNOSTICS_EK  || \
+         defined DIAGNOSTICS_VRT || defined DIAGNOSTICS_PV
+            if (nnew.ne.3) then
+            VFx4(i,j)=0.25*( v(i,j,k,nrhs)+v(i-1,j,k,nrhs)
+     &                        -0.125*(vxx(i,j)+vxx(i-1,j))
+     &                  )*( Huon(i,j,k)+Huon(i,j-1,k)
+     &                     -0.125*(Huee(i,j)+Huee(i,j-1)))
+            endif
+#     endif
             cffE=v(i,j,k,nrhs)+v(i-1,j,k,nrhs)
             cffX=Huon(i,j,k)+Huon(i,j-1,k)
             if (cffX.gt.0.) then
@@ -692,10 +990,10 @@
 #   undef Huee
 #   undef vxx
 
-#  else /* --> UV_HADV_C2 */
+#  elif defined UV_HADV_C2 || defined UV_HADV_TVD
 !
 !----------------------------------------------------------
-! Second order advection scheme (default)
+! Second order advection scheme with TVD correction
 !----------------------------------------------------------
 !
         do j=Jstr,Jend
@@ -722,6 +1020,13 @@
      &                       *(Huon(i,j,k)+Huon(i,j-1,k))
           enddo
         enddo
+!
+! Correction with Total Variance Diminishing method
+!
+#  ifdef UV_HADV_TVD
+#   include "uvhadv_tvd.h"
+#  endif
+
 #  endif /* UV_HADV_UP3 */
 !
 !----------------------------------------------------------
@@ -732,10 +1037,87 @@
           do i=IstrU,Iend
             ru(i,j,k)=ru(i,j,k)-UFx(i,j  )+UFx(i-1,j)
      &                         -UFe(i,j+1)+UFe(i  ,j)
-#  ifdef DIAGNOSTICS_UV
+#  if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL || defined DIAGNOSTICS_PV
             if (nnew.ne.3) then
-              MXadv(i,j,k,1) = -UFx(i,j)+UFx(i-1,j) SWITCH umask(i,j)
-              MYadv(i,j,k,1) = -UFe(i,j+1)+UFe(i,j) SWITCH umask(i,j)
+              MXadv(i,j,k,1) = MXadv(i,j,k,1)
+     &                       + (-UFx(i,j)+UFx(i-1,j))
+     &                         SWITCH umask(i,j)
+              MYadv(i,j,k,1) = (-UFe(i,j+1)+UFe(i,j))
+     &                         SWITCH umask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+              MHdiff(i,j,k,1) = (UFx4(i-1,j)-UFx4(i,j)
+     &                        +  UFe4(i,j)-UFe4(i,j+1))
+     &                         SWITCH umask(i,j)
+#    endif
+            endif
+#  elif defined DIAGNOSTICS_EK
+          if (nnew.ne.3) then
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+            if (k.eq.1) then
+             ekwrkHdiff(i,j,1) = 0
+            endif
+#    endif
+             ekwrkHadv(i,j,1)=ekwrkHadv(i,j,1)
+     &                       +(UFx(i-1,j)-UFx(i,j)
+     &                       +UFe(i,j)-UFe(i,j+1))
+     &                       * u(i,j,k,nrhs) SWITCH umask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+             ekwrkHdiff(i,j,1) = ekwrkHdiff(i,j,1)
+     &                         + (UFx4(i-1,j)-UFx4(i,j)
+     &                         +  UFe4(i,j)-UFe4(i,j+1))
+     &                         *  u(i,j,k,nrhs) SWITCH umask(i,j)
+#    endif
+#    if defined DIAGNOSTICS_EK_MLD
+              if (k.eq.kbl(i,j)) then
+             ekwrkHadv_mld(i,j,1)=
+     &                       +(UFx(i-1,j)-UFx(i,j)
+     &                       +UFe(i,j)-UFe(i,j+1))
+     &                       * u(i,j,k,nrhs) SWITCH umask(i,j)
+#      if defined UV_HADV_UP3 || defined UV_HADV_UP5
+             ekwrkHdiff_mld(i,j,1) =
+     &                         + (UFx4(i-1,j)-UFx4(i,j)
+     &                         +  UFe4(i,j)-UFe4(i,j+1))
+     &                         *  u(i,j,k,nrhs) SWITCH umask(i,j)
+#      endif
+              elseif (k.gt.kbl(i,j)) then
+             ekwrkHadv_mld(i,j,1)=ekwrkHadv_mld(i,j,1)
+     &                       +(UFx(i-1,j)-UFx(i,j)
+     &                       +UFe(i,j)-UFe(i,j+1))
+     &                       * u(i,j,k,nrhs) SWITCH umask(i,j)
+#      if defined UV_HADV_UP3 || defined UV_HADV_UP5
+             ekwrkHdiff_mld(i,j,1) = ekwrkHdiff_mld(i,j,1)
+     &                         + (UFx4(i-1,j)-UFx4(i,j)
+     &                         +  UFe4(i,j)-UFe4(i,j+1))
+     &                         *  u(i,j,k,nrhs) SWITCH umask(i,j)
+#      endif
+              endif
+#    endif
+           endif
+#  endif
+#  if defined DIAGNOSTICS_VRT && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+             if (k.eq.1) then
+              wrkYadv(i,j,1) = (-UFe(i,j+1)+UFe(i,j))
+     &                         SWITCH umask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+              wrkHdiff(i,j,1) = (UFx4(i-1,j)-UFx4(i,j)
+     &                          +  UFe4(i,j)-UFe4(i,j+1))
+     &                         SWITCH umask(i,j)
+#    endif
+             else
+              wrkYadv(i,j,1) = wrkYadv(i,j,1)
+     &                       + (-UFe(i,j+1)+UFe(i,j))
+     &                         SWITCH umask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+              wrkHdiff(i,j,1) = wrkHdiff(i,j,1)
+     &                        + (UFx4(i-1,j)-UFx4(i,j)
+     &                        +  UFe4(i,j)-UFe4(i,j+1))
+     &                         SWITCH umask(i,j)
+#    endif
+             endif
+              wrkXadv(i,j,1) = wrkXadv(i,j,1)
+     &                       + (-UFx(i,j)+UFx(i-1,j))
+     &                         SWITCH umask(i,j)
             endif
 #  endif
           enddo
@@ -744,10 +1126,87 @@
           do i=Istr,Iend
             rv(i,j,k)=rv(i,j,k)-VFx(i+1,j)+VFx(i,j  )
      &                         -VFe(i  ,j)+VFe(i,j-1)
-#  ifdef DIAGNOSTICS_UV
+#  if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL || defined DIAGNOSTICS_PV
             if (nnew.ne.3) then
-              MXadv(i,j,k,2) = -VFx(i+1,j)+VFx(i,j) SWITCH vmask(i,j)
-              MYadv(i,j,k,2) = -VFe(i,j)+VFe(i,j-1) SWITCH vmask(i,j)
+              MXadv(i,j,k,2) = MXadv(i,j,k,2)
+     &                         + (-VFx(i+1,j)+VFx(i,j))
+     &                        SWITCH vmask(i,j)
+              MYadv(i,j,k,2) = (-VFe(i,j)+VFe(i,j-1))
+     &                         SWITCH vmask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+              MHdiff(i,j,k,2) = (VFx4(i,j)-VFx4(i+1,j)
+     &                        +  VFe4(i,j-1)-VFe4(i,j))
+     &                         SWITCH vmask(i,j)
+#    endif
+            endif
+#  elif defined DIAGNOSTICS_EK
+            if (nnew.ne.3) then
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+              if (k.eq.1) then
+               ekwrkHdiff(i,j,2) = 0
+              endif
+#    endif
+                ekwrkHadv(i,j,2) = ekwrkHadv(i,j,2)
+     &                           +(VFx(i,j)-VFx(i+1,j)
+     &                           +  VFe(i,j-1)-VFe(i,j))
+     &                           *  v(i,j,k,nrhs) SWITCH vmask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+                ekwrkHdiff(i,j,2) = ekwrkHdiff(i,j,2) +
+     &                           (VFx4(i,j)-VFx4(i+1,j)
+     &                           + VFe4(i,j-1)-VFe4(i,j))
+     &                           * v(i,j,k,nrhs) SWITCH vmask(i,j)
+#    endif
+#    if defined DIAGNOSTICS_EK_MLD
+              if (k.eq.kbl(i,j)) then
+                ekwrkHadv_mld(i,j,2) =
+     &                           +(VFx(i,j)-VFx(i+1,j)
+     &                           +  VFe(i,j-1)-VFe(i,j))
+     &                           *  v(i,j,k,nrhs) SWITCH vmask(i,j)
+#      if defined UV_HADV_UP3 || defined UV_HADV_UP5
+                ekwrkHdiff_mld(i,j,2) =
+     &                           (VFx4(i,j)-VFx4(i+1,j)
+     &                           + VFe4(i,j-1)-VFe4(i,j))
+     &                           * v(i,j,k,nrhs) SWITCH vmask(i,j)
+#      endif
+              elseif (k.gt.kbl(i,j)) then
+                ekwrkHadv_mld(i,j,2) = ekwrkHadv_mld(i,j,2)
+     &                           +(VFx(i,j)-VFx(i+1,j)
+     &                           +  VFe(i,j-1)-VFe(i,j))
+     &                           *  v(i,j,k,nrhs) SWITCH vmask(i,j)
+#      if defined UV_HADV_UP3 || defined UV_HADV_UP5
+                ekwrkHdiff_mld(i,j,2) = ekwrkHdiff_mld(i,j,2) +
+     &                           (VFx4(i,j)-VFx4(i+1,j)
+     &                           + VFe4(i,j-1)-VFe4(i,j))
+     &                           * v(i,j,k,nrhs) SWITCH vmask(i,j)
+#      endif
+              endif
+#    endif
+            endif
+#  endif
+#  if defined DIAGNOSTICS_VRT && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+              if (k.eq.1) then
+                wrkYadv(i,j,2) = (-VFe(i,j)+VFe(i,j-1))
+     &                         SWITCH vmask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+                wrkHdiff(i,j,2) = (VFx4(i,j)-VFx4(i+1,j)
+     &                        +  VFe4(i,j-1)-VFe4(i,j))
+     &                         SWITCH vmask(i,j)
+#    endif
+              else
+                wrkYadv(i,j,2) = wrkYadv(i,j,2)
+     &                         + (-VFe(i,j)+VFe(i,j-1))
+     &                        SWITCH vmask(i,j)
+#    if defined UV_HADV_UP3 || defined UV_HADV_UP5
+                wrkHdiff(i,j,2) = wrkHdiff(i,j,2)
+     &                        +  (VFx4(i,j)-VFx4(i+1,j)
+     &                        +  VFe4(i,j-1)-VFe4(i,j))
+     &                         SWITCH vmask(i,j)
+#    endif
+              endif
+                wrkXadv(i,j,2) = wrkXadv(i,j,2)
+     &                         + (-VFx(i+1,j)+VFx(i,j))
+     &                        SWITCH vmask(i,j)
             endif
 #  endif
           enddo
@@ -816,15 +1275,14 @@
 !
 !======================================================================
 !
-#  ifdef UV_VADV_SPLINES
-!
 !----------------------------------------------------------
-!  U VERTICAL ADVECTION:
+!  U-component VERTICAL ADVECTION:
 !
 !  Construct conservative parabolic splines for the 
 !  vertical derivatives "CF" of u-momentum.
 !----------------------------------------------------------
 !
+#  ifdef UV_VADV_SPLINES
         do k=1,N
           do i=IstrU,Iend
             DC(i,k)=0.5625*(HZR(i  ,j,k)+HZR(i-1,j,k))
@@ -875,11 +1333,58 @@
           FC(i,0)=0.
 #   endif
         enddo
-#  elif defined UV_VADV_C2
+!!!! 29/11/2019 @gyc: vadv
+#  elif defined UV_VADV_WENO5 || defined UV_VADV_UP5 \
+                              || defined UV_VADV_C6
 !
 !----------------------------------------------------------
-!  Compute vertical advective fluxes 
-!  using Second order advection scheme
+! Compute vertical advective fluxes 
+! using 5th-order WENO scheme
+!----------------------------------------------------------
+!
+#   ifdef UV_VADV_WENO5
+#    define FLUX5 flux5_weno
+#    define FLUX3 flux3_weno
+#    define FLUX2 flux1
+          cdif=1.
+#    include "u_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+#   else
+        if (nnew.eq.3) then  ! predictor
+#    define FLUX5 flux6
+#    define FLUX3 flux4
+#    define FLUX2 flux2
+          cdif=0.
+#    include "u_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        else                 ! corrector
+#    ifdef UV_VADV_C6
+#     define FLUX5 flux6
+#     define FLUX3 flux4
+#     define FLUX2 flux2
+          cdif=0.
+#    else
+#     define FLUX5 flux5
+#     define FLUX3 flux3
+#     define FLUX2 flux1
+          cdif=0.5
+#    endif
+#    include "u_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+         endif
+#   endif /* WENO5 */
+!!!! end of 29/11/2019 @gyc: vadv
+#  elif defined UV_VADV_C2 || defined UV_VADV_TVD
+!
+!----------------------------------------------------------
+!  Compute vertical advective fluxes using
+!  second order advection scheme with TVD correction
 !----------------------------------------------------------
 !
         do k=1,N-1
@@ -898,6 +1403,30 @@
 #   endif
           FC(i,N)=0.
         enddo
+!
+!  Correction with TVD method
+!
+#   ifdef UV_VADV_TVD
+        do k=1,N-1
+          kp2=MIN(N,k+2)
+          kp1=MIN(N,k+1)
+          km1=MAX(1,k-1)
+          do i=IstrU,Iend
+            cff = 0.5 *(We(i,j,k)+We(i-1,j,k) )
+            cu = cff*pm_u(i,j)*pn_u(i,j)
+     &           * cdt*2/(-z_r(i  ,j,k)+z_r(i  ,j,k+1)
+     &                    -z_r(i-1,j,k)+z_r(i-1,j,k+1))      
+            rrp= (u(i,j,kp2,nstp) -u(i,j,kp1,nstp)) 
+            rr = (u(i,j,kp1,nstp) -u(i,j,k  ,nstp)) 
+            rrm= (u(i,j,k  ,nstp) -u(i,j,km1,nstp))                 
+            cff1=0.5*( cff*(u(i,j,k,nstp)+u(i,j,kp1,nstp))
+     &                                      -abs(cff)*rr )
+            Cr=limiter(cu,FC(i,k),cff1,rrm,rr,rrp)
+            FC(i,k) = cff1*(1-cr) + Cr*FC(i,k)
+          enddo
+        enddo
+#   endif
+
 #  else
 !
 !----------------------------------------------------------
@@ -946,27 +1475,54 @@
 ! Finalize U vertical advection: compute flux divergences
 !----------------------------------------------------------
 !
+#  if defined DIAGNOSTICS_EK && ! defined DIAGNOSTICS_EK_FULL && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+             do i=istrU,iend
+              ekwrkVadv(i,j,1) = 0
+#    if defined DIAGNOSTICS_EK_MLD
+              ekwrkVadv_mld(i,j,1) = 0
+#    endif
+             enddo         
+            endif
+#  endif
+
         do k=1,N
           do i=IstrU,Iend
             ru(i,j,k)=ru(i,j,k)-FC(i,k)+FC(i,k-1)
-#  ifdef DIAGNOSTICS_UV
+#  if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL
             if (nnew.ne.3) then
-              MVadv(i,j,k,1) = -FC(i,k)+FC(i,k-1) SWITCH umask(i,j)
+              MVadv(i,j,k,1) = (-FC(i,k)+FC(i,k-1)) SWITCH umask(i,j)
             endif
+#  else
+#    ifdef DIAGNOSTICS_EK
+            if (nnew.ne.3) then
+              ekwrkVadv(i,j,1) = ekwrkVadv(i,j,1)
+     &                         + (-FC(i,k)+FC(i,k-1))
+     &                      * u(i,j,k,nrhs)  SWITCH umask(i,j)
+#      if defined DIAGNOSTICS_EK_MLD
+              if (k.ge.kbl(i,j)) then
+                ekwrkVadv_mld(i,j,1) = ekwrkVadv_mld(i,j,1)
+     &                         + (-FC(i,k)+FC(i,k-1))
+     &                      * u(i,j,k,nrhs)  SWITCH umask(i,j)
+              endif
+#      endif
+            endif
+#    endif
 #  endif
           enddo
         enddo               !--> discard FC
 
-        if (j.ge.JstrV) then
-#  ifdef UV_VADV_SPLINES
 !
 !----------------------------------------------------------
-!  V VERTICAL ADVECTION:
+!  V-component VERTICAL ADVECTION:
 !
 !  Construct conservative parabolic splines for the 
 !  vertical derivatives "CF" of u-momentum.
 !----------------------------------------------------------
 !
+        if (j.ge.JstrV) then
+!
+#  ifdef UV_VADV_SPLINES
           do k=1,N
             do i=Istr,Iend
               DC(i,k)=0.5625*(HZR(i  ,j,k)+HZR(i,j-1,k))
@@ -1017,10 +1573,57 @@
             FC(i,0)=0.
 #   endif
           enddo
-#  elif defined UV_VADV_C2
+
+#  elif defined UV_VADV_WENO5 || defined UV_VADV_C6 \
+                              || defined UV_VADV_UP5
 !
 !----------------------------------------------------------
-!  Second order advection scheme
+! Compute vertical advective fluxes 
+! using 5th-order WENO scheme
+!----------------------------------------------------------
+!
+#   ifdef UV_VADV_WENO5
+#    define FLUX5 flux5_weno
+#    define FLUX3 flux3_weno
+#    define FLUX2 flux1
+          cdif=1.
+#    include "v_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+#   else
+        if (nnew.eq.3) then  ! predictor
+#    define FLUX5 flux6
+#    define FLUX3 flux4
+#    define FLUX2 flux2
+          cdif=0.
+#    include "v_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        else                 ! corrector
+#    ifdef UV_VADV_C6
+#     define FLUX5 flux6
+#     define FLUX3 flux4
+#     define FLUX2 flux2
+          cdif=0.
+#    else
+#     define FLUX5 flux5
+#     define FLUX3 flux3
+#     define FLUX2 flux1
+          cdif=0.5
+#    endif
+#    include "v_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        endif
+#   endif /* WENO5 */
+
+#  elif defined UV_VADV_C2 || defined UV_VADV_TVD
+!
+!----------------------------------------------------------
+!  Second order advection scheme with TVD correction
 !----------------------------------------------------------
 !
           do k=1,N-1
@@ -1039,6 +1642,30 @@
 #   endif
             FC(i,N)=0.
           enddo
+!
+!  Correction using TVD method
+!
+#   ifdef UV_VADV_TVD
+          do k=1,N-1
+            kp2=min(N,k+2)
+            kp1=min(N,k+1)
+            km1=max(1,k-1)
+            do i=Istr,Iend
+              cff = 0.5*(We(i,j,k)+We(i,j-1,k))
+              cu = cff*pm_v(i,j)*pn_v(i,j)
+     &             * cdt*2/(-z_r(i,j  ,k)+z_r(i,j  ,k+1)
+     &                      -z_r(i,j-1,k)+z_r(i,j-1,k+1))      
+              rrp= v(i,j,kp2,nstp)-v(i,j,kp1,nstp) 
+              rr = v(i,j,kp1,nstp)-v(i,j,k  ,nstp) 
+              rrm= v(i,j,k  ,nstp)-v(i,j,km1,nstp)                    
+              cff1=0.5*( cff*(v(i,j,k,nstp)+v(i,j,kp1,nstp))
+     &                                        -abs(cff)*rr )
+              Cr=limiter(cu,FC(i,k),cff1,rrm,rr,rrp)
+              FC(i,k) = cff1*(1-cr) + Cr*FC(i,k)
+            enddo
+          enddo         
+#   endif
+
 #  else
 !
 !----------------------------------------------------------
@@ -1086,13 +1713,40 @@
 ! Finalize V vertical advection: compute flux divergences
 !----------------------------------------------------------
 !
+#  if defined DIAGNOSTICS_EK && ! defined DIAGNOSTICS_EK_FULL  && ! defined DIAGNOSTICS_UV
+            if (nnew.ne.3) then
+             do i=Istr,Iend
+              ekwrkVadv(i,j,2) = 0
+#    if defined DIAGNOSTICS_EK_MLD
+              ekwrkVadv_mld(i,j,2) = 0
+#    endif
+             enddo         
+            endif
+#  endif
           do k=1,N
             do i=Istr,Iend
               rv(i,j,k)=rv(i,j,k)-FC(i,k)+FC(i,k-1)
-#  ifdef DIAGNOSTICS_UV
+#  if defined DIAGNOSTICS_UV || defined DIAGNOSTICS_EK_FULL
             if (nnew.ne.3) then
-              MVadv(i,j,k,2) = -FC(i,k)+FC(i,k-1) SWITCH vmask(i,j)
+            MVadv(i,j,k,2) = (-FC(i,k)+FC(i,k-1)) SWITCH vmask(i,j)
             endif
+#  else
+#  ifdef DIAGNOSTICS_EK
+            if (nnew.ne.3) then
+             ekwrkVadv(i,j,2) = ekwrkVadv(i,j,2)
+     &                         + (-FC(i,k)+FC(i,k-1))
+     &                         * v(i,j,k,nrhs)
+     &                           SWITCH vmask(i,j)
+# if defined DIAGNOSTICS_EK_MLD
+              if (k.ge.kbl(i,j)) then
+                ekwrkVadv_mld(i,j,2) = ekwrkVadv_mld(i,j,2)
+     &                         + (-FC(i,k)+FC(i,k-1))
+     &                         * v(i,j,k,nrhs)
+     &                           SWITCH vmask(i,j)
+              endif
+# endif
+            endif
+#  endif
 #  endif
             enddo
           enddo
@@ -1225,10 +1879,54 @@ ccc            dvde =0.5*( v(i,j-1,k,nrhs) -v(i,j+1,k,nrhs) )
             enddo
           enddo
         endif
-      enddo      !<-- j
+
+      enddo      !<-- j loop
 
       return
       end
+!
+!=======================================================================
+!
+# if defined UV_VADV_TVD || defined UV_HADV_TVD
+ 
+      function limiter(nu,hf,lf,rrm,rr,rrp)      
+      implicit none
+      real    :: cff,limiter,Rj,nu,hf,lf,rrm,rr,rrp
+!
+!  Upwind        Limiter(Rj)=0.
+!  Lax-Wendroff  Limiter(Rj)=1.
+!  Min-Mod       Limiter(Rj)=max(0.,min(1.,Rj))
+!  Suberbee      Limiter(Rj)=max(0.,max(min(1.,2*Rj),min(2.,Rj)))
+!  Van Leer      Limiter(Rj)=(Rj+abs(Rj))/(1+abs(Rj))  => default
+!
+      if (abs(rr).gt.1.e-20) THEN
+        if (nu .gt. 1.e-20) THEN
+          Rj=rrm/rr
+        else
+          Rj=rrp/rr
+        endif
+      else
+        if (nu.gt.1.e-20) then
+          Rj=Rrm*1.E20
+        else
+          Rj=Rrp*1.E20
+        endif
+      endif
+
+#  ifdef SUPERBEE
+       limiter=max(0.,max(min(1.,2.*Rj),min(2.,Rj)))
+#  elif defined MINMOD
+       limiter=max(0.,min(1.,Rj))
+#  else
+       limiter=(Rj+abs(Rj))/(1+abs(Rj))  ! Van Leer
+#  endif
+
+      end function
+
+# endif /* UV_VADV_TVD || UV_VADV_TVD */
+!
+!=======================================================================
+!
 #else
       subroutine rhs3d_empty
       end

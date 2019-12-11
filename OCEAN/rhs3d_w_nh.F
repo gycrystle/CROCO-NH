@@ -48,7 +48,8 @@
       real rw(PRIVATE_2D_SCRATCH_ARRAY,0:N),
      &     CF(PRIVATE_1D_SCRATCH_ARRAY,0:N),  cff,cff1,cff2,
      &     FC(PRIVATE_1D_SCRATCH_ARRAY,0:N),  
-     &     DC(PRIVATE_1D_SCRATCH_ARRAY,0:N),        
+     &     DC(PRIVATE_1D_SCRATCH_ARRAY,0:N),
+     &     We_r(PRIVATE_1D_SCRATCH_ARRAY,0:N),
 # ifdef NHMG
      &     div_zx(PRIVATE_1D_SCRATCH_ARRAY,1:N),  
      &     div_zy(PRIVATE_1D_SCRATCH_ARRAY,1:N),  
@@ -70,6 +71,48 @@
 # include "scalars.h"  
 # include "nbq.h"
 !
+!--------------------------------------------------------------------
+! Definition of flux operators: 1st, 2nd, 3rd, 4th, 5th or 6th order,
+! used in UP5 and C6 advection schemes (and order degradation near 
+! land masks). cdiff is part of laplacian diffusion in flux1 (used 
+! near mask): 
+!    0 --> flux1=flux2 (second order C2 advection scheme)
+!    1 --> flux1 gives 1st order monotonic UP1 advection scheme
+!--------------------------------------------------------------------
+!
+# if defined W_HADV_WENO5 || defined W_HADV_C6 || defined W_HADV_UP5 \
+  || defined W_VADV_WENO5 || defined W_VADV_C6 || defined W_VADV_UP5
+      REAL    :: q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2
+      REAL    :: ua, vel, cdiff, cdif
+      REAL    :: flux1, flux2, flux3, flux4, flux5, flux6
+      REAL    :: flx2, flx3, flx4, flx5
+      REAL    :: mask0, mask1, mask2, mask3
+
+      flux2(q_im1, q_i, ua, cdiff) = 0.5*( q_i + q_im1 )
+
+      flux1(q_im1, q_i, ua, cdiff) = flux2(q_im1, q_i, ua, cdiff) -
+     &      0.5*cdiff*sign(1.,ua)*(q_i-q_im1)
+
+      flux4(q_im2, q_im1, q_i, q_ip1, ua) = 
+     &      ( 7.*(q_i + q_im1) - (q_ip1 + q_im2) )/12.0
+
+      flux3(q_im2, q_im1, q_i, q_ip1, ua) =
+     &      flux4(q_im2, q_im1, q_i, q_ip1, ua) +
+     &      sign(1.,ua)*((q_ip1 -
+     &      q_im2)-3.*(q_i-q_im1))/12.0
+
+      flux6(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua) =
+     &      ( 37.*(q_i+q_im1) - 8.*(q_ip1+q_im2)
+     &      +(q_ip2+q_im3) )/60.0
+
+      flux5(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua) =
+     &      flux6(q_im3, q_im2, q_im1, q_i, q_ip1, q_ip2, ua)
+     &      -sign(1.,ua)*( 
+     &      (q_ip2-q_im3)-5.*(q_ip1-q_im2)+10.*(q_i-q_im1) )/60.0
+# endif
+# if  defined W_HADV_WENO5 || defined W_VADV_WENO5
+      REAL    :: flux3_weno, flux5_weno
+# endif
 # include "compute_auxiliary_bounds.h"
 !
 
@@ -254,7 +297,8 @@
 !    W(k) = (-W(k-3/2)+9 W(k-1/2)+9 W(k+1/2)-W(k+3/2))/16
 !====================================================================
 #  define NEUMANN
-#  ifdef UV_VADV_SPLINES
+!!! I think this should be W_VADV_SPLINES instead of UV_VADV_SPLINES 
+#  ifdef W_VADV_SPLINES
         do k=2,N-1
           do i=Istr,Iend
             kp   = min(k+1,N-1)
@@ -310,6 +354,111 @@
           FC(i,N)=0.
           FC(i,0)=0.
         enddo
+!!!!!!!! 29/11/2019 @gyc: including upstream biased vertical adv
+#  elif defined W_VADV_WENO5 || defined W_VADV_C6 || defined W_VADV_UP5
+!
+! === WENO5 vertical advection scheme ===
+!
+#   ifdef W_VADV_WENO5
+#    define FLUX5 flux5_weno
+#    define FLUX3 flux3_weno
+#    define FLUX2 flux1
+          cdif=1.
+#    include "w_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+#   else /* C6 or UP5 */
+        if (nnew.eq.3) then  ! predictor
+#    define FLUX5 flux6
+#    define FLUX3 flux4
+#    define FLUX2 flux2
+          cdif=0.
+#    include "w_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        else                 ! corrector
+#    ifdef W_VADV_C6
+#     define FLUX5 flux6
+#     define FLUX3 flux4
+#     define FLUX2 flux2
+          cdif=0.
+#    else
+#     define FLUX5 flux5
+#     define FLUX3 flux3
+#     define FLUX2 flux1
+          cdif=0.5
+#    endif
+#    include "w_vadv_order5.h"
+#    undef FLUX5
+#    undef FLUX3
+#    undef FLUX2
+        endif
+#   endif /* WENO5 */
+
+#  elif defined W_VADV_C2
+!
+! === C2 vertical advection scheme with TVD correction ===
+!
+        DO k=2,N-1
+          DO i=Istr,Iend
+            FC(i,k) = 0.5*(wz(i,j,k,nrhs) + wz(i,j,k-1,nrhs))*We_r(i,k)
+#   ifdef W_VADV_TVD
+            CF(i,k)=(We_r(i,k) * (wz(i,j,k,nrhs) + wz(i,j,k-1,nrhs) )
+     &          -abs(We_r(i,k))* (wz(i,j,k,nrhs) - wz(i,j,k-1,nrhs) ) 
+     &               ) *0.5
+#   endif
+          ENDDO
+        ENDDO
+
+        DO i=Istr,Iend        
+!         wz_bot  = - 0.5d0 * ( udH_x(i,j) + udH_x(i+1,j)
+!     &                     +   vdH_y(i,j) + vdH_y(i,j+1) )  
+!#   ifdef MOVING_BATHY
+!         wz_bot  =  wz_bot - dh(i,j)     
+!#   endif 
+        ! FC(i,1) = 0.5*( wz(i,j,1,nrhs) + wz_bot  )*We_r(i,1)
+          FC(i,1) = 0.5*( wz(i,j,1,nrhs) + wz(i,j,0,nrhs)  )*We_r(i,1)
+#   ifdef W_VADV_TVD
+          CF(i,1)=(We_r(i,1) * (wz(i,j,1,nstp) + wz(i,j,0,nstp) )
+     &        -abs(We_r(i,1))* (wz(i,j,1,nstp) - wz(i,j,0,nstp) ) )*0.5
+#   endif
+!         wz_sfc  = pn(i,j)*pm(i,j)*( DUon(i,j)-DUon(i+1,j  )
+!     &                           +   DVom(i,j)-DVom(i  ,j+1) )    !
+!     &           + 0.5d0 * ( udZ_x(i,j) + udZ_x(i+1,j)
+!     &                   +   vdZ_y(i,j) + vdZ_y(i,j+1) )
+!        FC(i,N) = 0.5*( wz_sfc + wz(i,j,N-1,nrhs))*We_r(i,N)
+          FC(i,N) = 0.5*( wz(i,j,N,nrhs) + wz(i,j,N-1,nrhs))*We_r(i,N)
+#   ifdef W_VADV_TVD
+          CF(i,N)=(We_r(i,N) * (wz(i,j,N,nstp) + wz(i,j,N-1,nstp) )
+     &        -abs(We_r(i,N))* (wz(i,j,N,nstp) - wz(i,j,N-1,nstp) ) )*0.5
+#   endif
+        ENDDO          
+
+        DO i=Istr,Iend
+          FC(i,0  )=0.
+          FC(i,N+1)=0.
+        ENDDO          
+
+#   ifdef W_VADV_TVD
+        DO k=1,N
+          kp2=min(N+1,k+2)
+          kp1=min(N+1,k+1)
+          km1=max(1,k-1)
+          DO i=IstrU,Iend
+            cff= We_r(i,k)
+            cu = cff*pm(i,j)*pn(i,j)
+     &            *cdt/Hzw(i,k)
+            rrp= (wz(i,j,min(kp2,N),nstp) -wz(i,j,min(kp1,N),nstp))
+            rr = (wz(i,j,min(kp1,N),nstp) -wz(i ,j,k,nstp))
+            rrm= (wz(i,j,k  ,nstp) -wz(i ,j,km1,nstp))
+            Cr = limiter2(cu,FC(i,k),cff1,rrm,rr,rrp)
+            FC(i,k) = (1-Cr)*CF(i,k) + Cr*FC(i,k)
+          ENDDO
+        ENDDO
+#   endif
+!!!!!!!! end of 29/11/2019 @gyc: including upstream biased vertical adv
 #  else
         do k=1,N-1
           do i=Istr,Iend
@@ -326,6 +475,7 @@
         enddo
 #  endif
 !
+!
            do k=1,N
             do i=Istr,Iend
               rw(i,j,k)=rw(i,j,k)-FC(i,k)+FC(i,k-1)
@@ -333,9 +483,9 @@
               rw(i,j,k)=rw(i,j,k)*rmask(i,j)
 #  endif              
             enddo
-          enddo
+           enddo
 !==
-      enddo     !<-- outer loop j
+       enddo     !<-- outer loop j
 !==
 # endif /* UV_ADV && W_VADV */
 
