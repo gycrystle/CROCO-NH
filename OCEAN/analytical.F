@@ -118,8 +118,15 @@
 #  include "scalars.h"
       integer itrc, Istr,Iend,Jstr,Jend, i,j
 # if defined CALDEIRA 
-      real rr
+      real rr, btflx_tot, btflx_tot0, xcenter, ycenter, ramp
+      real, dimension(1) :: buff0, buff1
+#  ifdef MPI
+      include 'mpif.h'
+#  include "mpi_roms.h"
+      integer ierr
+#  endif
 # endif
+
 !
 #  include "compute_auxiliary_bounds.h"
 !
@@ -128,18 +135,65 @@
 !----------------------------------------------------------------------
 ! Set kinematic bottom heat flux [degC m/s] at horizontal RHO-points.
 !----------------------------------------------------------------------
-!
+! !!!!NEED TO WRITE THIS BETTER TO ADAPT FOR HORIZONTAL GRID VARIATION!!!!
+# if defined CALDEIRA
+        btflx_tot0=1.0e9/(4.6e3*1028) ! total heatflux[Watt]/(specific heat [J/K]*density[kg/m3])
+!        xl= 10240 !89280! 119040 !89280 !125400 !116064 x_psi[-1,-1]
+!        el= 10240 !89280! 119040 !89280 !125400 !116064 y_psi[-1,-1] 
+        xcenter=xl*(float(LLm)+49)/(2*float(LLm)) !3845 !(Lx+dx)/2 !!MANUAL INPUT FOR NOW
+        ycenter=el*(float(MMm)+49)/(2*float(MMm)) !3845 !44680 !44660 !44680 !59560 !el*(float(MMm)+1)/(2*float(MMm))
+        ramp=1.0
+        if (time.lt.900.) then
+          ramp = 1.0 !(1.0 - cos(pi*time/900.))/2.
+        endif
+# endif
         do j=JstrR,JendR
           do i=IstrR,IendR
-            btflx(i,j,itemp)=0.
+            btflx(i,j,itemp)=0.0
 # if defined CALDEIRA 
-            rr = sqrt((xr(i,j)-0.5*xl)**2+(yr(i,j)-0.5*el)**2)
-            if (rr.le.2.5e3) then
-              btflx(i,j,itemp)=0.0
+            if (btflx_tot0.gt.0.0) then
+!              rr = sqrt((xr(i,j)-0.5*xl)**2+(yr(i,j)-0.5*el)**2)
+              rr = sqrt((xr(i,j)-xcenter)**2 +(yr(i,j)-ycenter)**2)
+              if (rr.le.0.5e3) then
+!                btflx(i,j,itemp)=0.005 !0.0012
+                btflx(i,j,itemp)=exp(-(rr/60.0)**2/2) 
+              endif
             endif
 # endif
           enddo
         enddo
+# if defined CALDEIRA
+        if (btflx_tot0.gt.0.0) then
+           btflx_tot = 0.
+        do j=JstrR,JendR
+          do i=IstrR,IendR
+             btflx_tot = btflx_tot + btflx(i,j,itemp)*om_r(i,j)*on_r(i,j)
+          enddo
+        enddo
+
+          !dx = 1./pn(i,j)
+          !btflx_tot=sum(btflx(:,:,itemp)*(dx**2)) !!(xl/float(LLm))*(el/float(MMm))) !!MANUAL DX
+#  ifdef MPI
+          if (NNODES.gt.1) then         ! Perform global sum
+            buff0(1) = btflx_tot
+            call MPI_allreduce(buff0, buff1, 1, MPI_DOUBLE_PRECISION, 
+     &                      MPI_SUM,MPI_COMM_WORLD,ierr)
+            !<- 1 is the length of buff0
+            btflx_tot = buff1(1)
+          endif
+#  endif
+
+          do j=JstrR,JendR
+            do i=IstrR,IendR
+              rr = sqrt((xr(i,j)-xcenter)**2 +(yr(i,j)-ycenter)**2)
+              if (rr.le.0.5e3) then
+                btflx(i,j,itemp)=(btflx_tot0/btflx_tot)*
+     &                           exp(-(rr/60.0)**2/2)*ramp
+              endif
+            enddo
+          enddo
+        endif
+# endif
 !
 #  ifdef SALINITY
       elseif (itrc.eq.isalt) then
@@ -542,7 +596,7 @@ C$    integer  trd, omp_get_thread_num
       real*QUAD mssh,area,cff1
 #  ifdef MPI
       include 'mpif.h'
-      integer ierr
+     integer ierr
       real*QUAD allmssh(1,NNODES),allarea(1,NNODES)
 #  endif
 # endif
@@ -2047,8 +2101,8 @@ C$    integer  trd, omp_get_thread_num
 # endif
 # if defined CALDEIRA
       real u0,v0
-      parameter (u0=1.5)
-      parameter (v0=1.2)
+      parameter (u0=0.0)
+      parameter (v0=0.0)
 # endif
 # include "param.h"
 # include "grid.h"
@@ -2118,11 +2172,17 @@ C$    integer  trd, omp_get_thread_num
             tbry_west(j,k,itemp) =15. + 10./4500.*z_r(IstrR,j,k)
 #    elif defined CALDEIRA
 !            tbry_west(j,k,itemp)=15.
-            tbry_west(j,k,itemp)=15. + 10./1300.*z_r(IstrR,j,k)
+!            tbry_west(j,k,itemp)=13. + 12./1700.*z_r(IstrR,j,k)
+!            tbry_west(j,k,itemp)=1.0 + 12.0*exp(5./1700.*z_r(IstrR,j,k))
+!            tbry_west(j,k,itemp)=1.0 + 4.25*exp(-5.5*(z_r(IstrR,j,k)/1700.)**2) !before cal01_06
+!     &                           + 7.75*exp(5.*z_r(IstrR,j,k)/200.)
+            tbry_west(j,k,itemp)=10.5*exp(-3.45*(z_r(IstrR,j,k)/1700.)**2) 
+     &                           +6.0*exp(15.*z_r(IstrR,j,k)/1700.)+3.5
 !            tbry_west(j,k,itemp)=min(3.+46.*exp(z_r(IstrR,j,k)/250.)
 !     &           ,28.)
 #    ifdef SALINITY
-            tbry_west(j,k,isalt)=34.54
+!            tbry_west(j,k,isalt)=34.54
+            tbry_west(j,k,isalt)=34.8+1.5*exp(2.0*z_r(IstrR,j,k)/1700.)
 !            tbry_west(j,k,isalt)=34.54+3.5*exp(z_r(IstrR,j,k)/250.)
 !     &      * sin(-z_r(IstrR,j,k)/(1-z_r(IstrR,j,k)/6000.)*2*3.14/1000.)
 #    endif
@@ -2202,10 +2262,16 @@ C$    integer  trd, omp_get_thread_num
             tbry_east(j,k,itemp)=15. + 10./4500.*z_r(IendR,j,k)
 #    elif defined CALDEIRA
 !           tbry_east(j,k,itemp)=15.
-           tbry_east(j,k,itemp)=15. + 10./1300.*z_r(IendR,j,k)
+!           tbry_east(j,k,itemp)=13. + 12./1700.*z_r(IendR,j,k)
+!           tbry_east(j,k,itemp)=1.0 + 12.0*exp(5./1700.*z_r(IendR,j,k))           
+!           tbry_east(j,k,itemp)=1.0 + 4.25*exp(-5.5*(z_r(IendR,j,k)/1700.)**2) 
+!     &                              + 7.75*exp(5.*z_r(IendR,j,k)/200.)
+           tbry_east(j,k,itemp)=10.5*exp(-3.45*(z_r(IendR,j,k)/1700.)**2) 
+     &                          +6.0 *exp(15.*z_r(IendR,j,k)/1700.)+3.5
 !           tbry_east(j,k,itemp)=min(3.+46.*exp(z_r(IendR,j,k)/250.),28.)
 #    if defined SALINITY
-            tbry_east(j,k,isalt)=34.54
+!            tbry_east(j,k,isalt)=34.54
+            tbry_east(j,k,isalt)=34.8+1.5*exp(2.0*z_r(IendR,j,k)/1700.0)
 !            tbry_east(j,k,isalt)=34.54+3.5*exp(z_r(IendR,j,k)/250.)
 !     &      * sin(-z_r(IendR,j,k)/(1-z_r(IendR,j,k)/6000.)*2*3.14/1000.)
 #    endif
@@ -2275,10 +2341,15 @@ C$    integer  trd, omp_get_thread_num
             enddo
 # if defined CALDEIRA
 !           tbry_south(i,k,itemp)=15.
-           tbry_south(i,k,itemp)=15. + 10./1300.*z_r(i,JstrR,k)
+!           tbry_south(i,k,itemp)=13. + 12./1700.*z_r(i,JstrR,k)
+!           tbry_south(i,k,itemp)=1.0 + 12.0*exp(5./1700.*z_r(i,JstrR,k))
+!           tbry_south(i,k,itemp)=1.0 + 4.25*exp(-5.5*(z_r(i,JstrR,k)/1700.)**2) 
+!     &                               + 7.75*exp(5.*z_r(i,JstrR,k)/200.)
+           tbry_south(i,k,itemp)=10.5*exp(-3.45*(z_r(i,JstrR,k)/1700.)**2) 
+     &                           +6.0*exp(15.*z_r(i,JstrR,k)/1700.)+3.5
 !           tbry_south(i,k,itemp)=min(3.+46.*exp(z_r(i,JstrR,k)/250.),28.)
 #   ifdef SALINITY
-            tbry_south(i,k,isalt)=34.54
+            tbry_south(i,k,isalt)=34.8+1.5*exp(2.0*z_r(i,JstrR,k)/1700.)
 !            tbry_south(i,k,isalt)=34.54+3.5*exp(z_r(i,JstrR,k)/250.)
 !     &      * sin(-z_r(i,JstrR,k)/(1-z_r(i,JstrR,k)/6000.)*2*3.14/1000.)
 # endif
@@ -2348,10 +2419,15 @@ C$    integer  trd, omp_get_thread_num
             enddo
 # if defined CALDEIRA
 !           tbry_north(i,k,itemp)=15.
-           tbry_north(i,k,itemp)=15. + 10./1300.*z_r(i,JendR,k)
+!           tbry_north(i,k,itemp)=13. + 12./1700.*z_r(i,JendR,k)
+!           tbry_north(i,k,itemp)=1.0 + 12.0*exp(5./1700.*z_r(i,JendR,k))
+!           tbry_north(i,k,itemp)=1.0 + 4.25*exp(-5.5*(z_r(i,JendR,k)/1700.)**2) 
+!     &                               + 7.75*exp(5.*z_r(i,JendR,k)/200.)
+           tbry_north(i,k,itemp)=10.5*exp(-3.45*(z_r(i,JendR,k)/1700.)**2) 
+     &                           +6.0*exp(15.*z_r(i,JendR,k)/1700.)+3.5
 !           tbry_north(i,k,itemp)=min(3.+46.*exp(z_r(i,JendR,k)/250.),28.)
 #   ifdef SALINITY
-            tbry_north(i,k,isalt)=34.54
+            tbry_north(i,k,isalt)=34.8+1.5*exp(2.0*z_r(i,JendR,k)/1700.)
 !            tbry_north(i,k,isalt)=34.54+3.5*exp(z_r(i,JendR,k)/250.)
 !     &           * sin(-z_r(i,JendR,k)/(1-z_r(i,JendR,k)/6000.)*2*3.14/1000.)
 # endif

@@ -86,8 +86,13 @@ C$    integer omp_get_thread_num
 #endif
 #ifdef CALDEIRA
       real u0,v0
-      parameter (u0=1.5)
-      parameter (v0=1.2)
+      parameter (u0=0.0)
+      parameter (v0=0.0)
+#endif
+#ifdef TAYLOR_INST
+      real u0,v0, randomn, rr, xcenter, ycenter
+      parameter (u0=0.0)
+      parameter (v0=0.0)
 #endif
 !
 #include "compute_auxiliary_bounds.h"
@@ -218,6 +223,20 @@ C$    integer omp_get_thread_num
           do i=IR_RANGE
             zeta(i,j,1)=-f(i,j)/g*((yr(i,j)-el/2.)*u0
      &                            -(xr(i,j)-xl/2.)*v0)
+            zeta(i,j,2)=zeta(i,j,1)
+            ubar(i,j,1)=u0
+            vbar(i,j,1)=v0
+            ubar(i,j,2)=ubar(i,j,1)
+            vbar(i,j,2)=vbar(i,j,1)
+          enddo
+        enddo
+
+# elif defined TAYLOR_INST
+        do j=JR_RANGE
+          do i=IR_RANGE
+            !call random_number(randomn)
+            zeta(i,j,1)=-f(i,j)/g*((yr(i,j)-el/2.)*u0
+     &                            -(xr(i,j)-xl/2.)*v0)!+0.001*randomn-0.0005
             zeta(i,j,2)=zeta(i,j,1)
             ubar(i,j,1)=u0
             vbar(i,j,1)=v0
@@ -699,11 +718,58 @@ C$    integer omp_get_thread_num
           do j=JR_RANGE
             do i=IR_RANGE
 !              t(i,j,k,1,itemp)=15.
-              t(i,j,k,1,itemp)=15. + 10./1300.*z_r(i,j,k)
+!              t(i,j,k,1,itemp)=5. + 5.5*exp(-6./1700.*z_r(i,j,k))
+!              t(i,j,k,1,itemp)=15. + 10./1700.*z_r(i,j,k)
+!              t(i,j,k,1,itemp)=1.0 + 4.25*exp(-5.5*(z_r(i,j,k)/1700.)**2) 
+!     &                         + 7.75*exp(5.*z_r(i,j,k)/200.)
+              t(i,j,k,1,itemp)=3.5+10.5*exp(-3.45*(z_r(i,j,k)/1700.)**2) 
+     &                           +6.0*exp(15.*z_r(i,j,k)/1700.)
 !              t(i,j,k,1,itemp)=min(3.+46.*exp(z_r(i,j,k)/250.),28.)
               t(i,j,k,2,itemp)=t(i,j,k,1,itemp)
 #   ifdef SALINITY
-              t(i,j,k,1,isalt)=34.54
+!              t(i,j,k,1,isalt)=34.54
+              t(i,j,k,1,isalt)=34.8+1.5*exp(2.0*z_r(i,j,k)/1700.)
+!              t(i,j,k,1,isalt)=34.54+3.5*exp(z_r(i,j,k)/250.)
+!     &         * sin(-z_r(i,j,k)/(1-z_r(i,j,k)/6000.)*2*3.14/1000.)
+              t(i,j,k,2,isalt)=t(i,j,k,1,isalt)
+#   endif
+            enddo
+          enddo
+        enddo
+
+#  elif defined TAYLOR_INST
+        xcenter=xl*(float(LLm)+1)/(2*float(LLm)) !(Lx+dx)/2
+        ycenter=el*(float(MMm)+1)/(2*float(MMm))
+        do k=1,N
+          do j=JR_RANGE
+            do i=IR_RANGE
+              rr = sqrt((xr(i,j)-xcenter)**2 +(yr(i,j)-ycenter)**2)
+              call random_number(randomn)
+#   ifdef MPI
+              t(i,j,k,1,itemp)=15.0
+     &                        -0.002*TANH((z_r(i,j,k) 
+     &                                  + h(1,1)/2 
+!     &                                  + 100.0*exp(-(rr/400.0)**2/2)+50.0 
+     &                                  + 250.0*cos((i+iminmpi-1)*pi/96)
+!     &                                  + 50.0*cos(rr/xl*2.0*pi) + 50.
+!     &                                  +  1.0*sin((i+iminmpi-1)*pi/3) 
+!     &                                  +  0.5*cos(rr/120.0*2.0*pi) 
+!     &                                  + 0.5*randomn-0.25 
+     &                                             )*pi*1.0e-2)
+!     &                         +0.01*randomn-0.005 
+#   else
+              t(i,j,k,1,itemp)=0.05-0.05*TANH(6.0e-2*pi*
+     &                        (z_r(i,j,k)+ h(1,1)/2+50.0*cos(i*pi/96)))
+!     &                         +0.001*randomn-0.0005 
+#   endif
+              t(i,j,k,2,itemp)=t(i,j,k,1,itemp)
+#   ifdef SALINITY
+              t(i,j,k,1,isalt)=35.4
+     &                        -0.1*TANH((z_r(i,j,k)
+     &                                  + h(1,1)/2
+     &                                  + 250.0*cos((i+iminmpi-1)*pi/96)
+     &                                             )*pi*1.0e-2)
+!              t(i,j,k,1,isalt)=34.8+1.5*exp(2.0*z_r(i,j,k)/1700.)
 !              t(i,j,k,1,isalt)=34.54+3.5*exp(z_r(i,j,k)/250.)
 !     &         * sin(-z_r(i,j,k)/(1-z_r(i,j,k)/6000.)*2*3.14/1000.)
               t(i,j,k,2,isalt)=t(i,j,k,1,isalt)
@@ -786,6 +852,8 @@ C$    integer omp_get_thread_num
 #   endif
             enddo
           enddo
+        enddo
+
         enddo
 
 #  elif defined JET
@@ -1604,8 +1672,5 @@ C$    integer omp_get_thread_num
         enddo
       endif
 # endif
-
       return
       end
-#endif /* JET */
-
