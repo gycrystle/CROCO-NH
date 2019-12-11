@@ -24,7 +24,8 @@
 #undef  RIVER           /* River run-off Example */
 #undef  OVERFLOW        /* Graviational/Overflow Example */
 #undef  SEAMOUNT        /* Seamount Example */
-#define  CALDEIRA        /* Caldeira Example */
+#undef  CALDEIRA        /* Caldeira Example */
+#define  TAYLOR_INST    /* Taylor Instability Example */
 #undef  SHELFRONT       /* Shelf Front Example */
 #undef  SOLITON         /* Equatorial Rossby Wave Example */
 #undef  UPWELLING       /* Upwelling Example */
@@ -37,9 +38,9 @@
 #undef  SWASH           /* Swash Test Case on a Planar Beach */
 #undef  THACKER         /* Thacker wetting-drying Example */
 #undef  TANK            /* Tank Example */
-#undef  TANKINT            /* Tank internal Example */
+#undef  TANKINT         /* Tank internal Example */
 #undef  S2DV            /* 2D Vertical Section Application */
-#undef REGIONAL        /* REGIONAL Applications */
+#undef REGIONAL         /* REGIONAL Applications */
 
 
 #if defined REGIONAL
@@ -88,7 +89,7 @@
 */
                       /* Parallelization */
 # ifdef MPI
-#  undef  PARALLEL_FILES
+# define  PARALLEL_FILES
 # endif
 # undef  AUTOTILING
 # undef  ETALON_CHECK
@@ -448,7 +449,7 @@
 # else
 #  define UV_VIS2
 # endif
-# define NHMG
+# undef NHMG
 # define SOLVE3D
 # define NEW_S_COORD
 # define UV_ADV
@@ -735,9 +736,10 @@
 */
 # undef OPENMP
 # define MPI
+# define PARALLEL_FILES
 # define NHMG
 # ifdef NHMG
-#  define NONTRAD_COR      /* Include the horizontal components of the Coriolis force */
+#  undef NONTRAD_COR      /* Include the horizontal components of the Coriolis force */
 #  undef NHMG_2D_DAMPING
 #  undef NHMG_MASKING
 # endif
@@ -765,6 +767,117 @@
 #  endif
 # endif
 # define NEW_S_COORD
+# undef ANA_GRID
+# undef ANA_INITIAL
+# define ANA_SMFLUX
+# define ANA_STFLUX
+# define ANA_SSFLUX
+# define ANA_SRFLUX
+# define ANA_BSFLUX
+# define ANA_BTFLUX
+# define SOLVE3D
+# define UV_COR
+# define UV_ADV
+# define TS_HADV_RSUP3
+# define SALINITY
+# define NONLIN_EOS
+# define SPLIT_EOS
+                      /* OBCs algo */
+# undef OBC_M2SPECIFIED
+# undef  OBC_M2FLATHER
+# define  OBC_M2CHARACT
+# undef  OBC_M2ORLANSKI
+# undef OBC_M3SPECIFIED
+# define OBC_M3ORLANSKI
+# undef OBC_TSPECIFIED
+# define OBC_TORLANSKI
+                      /* Sponge */
+# define SPONGE
+                      /* Semi-implicit Vertical Tracer/Mom Advection */
+# define  VADV_ADAPT_IMP
+                      /* Vertical Mixing */
+# undef  BODYFORCE
+# undef  BVF_MIXING
+# undef  LMD_MIXING
+# undef  GLS_MIXING
+# define GLS_MIX2017
+# ifdef LMD_MIXING
+#  define LMD_SKPP
+#  define LMD_BKPP
+#  define LMD_RIMIX
+#  define LMD_CONVEC
+#  undef  LMD_DDMIX
+#  define LMD_NONLOCAL
+# endif
+# ifdef GLS_MIXING
+#  undef GLS_KKL
+#  undef  GLS_KOMEGA
+#  define  GLS_KEPSILON
+#  undef  GLS_GEN
+#  undef  KANTHA_CLAYSON
+#  undef  CRAIG_BANNER
+#  define  CANUTO_A
+#  undef  ZOS_HSIG
+# endif
+# ifdef GLS_MIX2017
+#  define  GLS_KOMEGA
+#  undef GLS_KEPSILON
+#  undef  GLS_GEN
+#  undef GLS_HADV_UP1
+#  undef GLS_DXW
+#  undef GLS_DXV
+#  define CANUTO_A
+#  undef  GibLau_78
+#  undef  MelYam_82
+#  undef  KanCla_94
+#  undef  Luyten_96
+#  undef  CANUTO_B 
+#  undef  Cheng_02
+# endif
+
+                      /* Input/Output & Diagnostics */
+# define AVERAGES
+
+#elif defined TAYLOR_INST
+/*
+!                       Taylor Instability Example
+!                       ====== =========== =======
+*/
+# undef OPENMP
+# define MPI
+# undef PARALLEL_FILES
+# define NHMG
+# ifdef NHMG
+#  undef NONTRAD_COR      /* Include the horizontal components of the Coriolis force */
+#  undef NHMG_2D_DAMPING
+#  undef NHMG_MASKING
+# endif
+# undef CLOSED
+# ifdef CLOSED
+#  undef OBC_EAST
+#  undef OBC_WEST
+#  undef OBC_NORTH
+#  undef OBC_SOUTH
+# else
+#  define EW_PERIODIC
+#  define NS_PERIODIC
+#  undef OBC_EAST
+#  undef OBC_WEST
+#  undef OBC_NORTH
+#  undef OBC_SOUTH
+# endif
+# undef ANA_BRY
+# undef FRC_BRY
+# ifdef FRC_BRY
+#  define Z_FRC_BRY
+#  define M2_FRC_BRY
+#  define M3_FRC_BRY
+#  define T_FRC_BRY
+#  ifdef NHMG
+#   define W_FRC_BRY
+#  endif
+# endif
+# define NEW_S_COORD
 # define ANA_GRID
 # define ANA_INITIAL
 # define ANA_SMFLUX
@@ -777,31 +890,35 @@
 # define UV_COR
 # define UV_ADV
 # define SALINITY
-# define NONLIN_EOS
-# define SPLIT_EOS
+# undef NONLIN_EOS
+# undef SPLIT_EOS
+                       /* Advection Schemes */
+# define TS_HADV_RSUP5
+# define UV_HADV_UP5
+# define W_HADV_UP5
+# define TS_VADV_UP5
+# define UV_VADV_UP5
+# define W_VADV_UP5
+
                       /* OBCs algo */
-# define OBC_M2SPECIFIED
+# undef OBC_M2SPECIFIED
 # undef  OBC_M2FLATHER
 # undef  OBC_M2CHARACT
 # undef  OBC_M2ORLANSKI
-# define OBC_M3SPECIFIED
+# undef OBC_M3SPECIFIED
 # undef OBC_M3ORLANSKI
-# define OBC_TSPECIFIED
+# undef OBC_TSPECIFIED
 # undef OBC_TORLANSKI
                       /* Sponge */
 # undef SPONGE
                       /* Semi-implicit Vertical Tracer/Mom Advection */
-# define  VADV_ADAPT_IMP                      
-                     /* Lateral Explicit Momentum Mixing */
-# define  UV_VIS2
-# ifdef UV_VIS2
-#  define UV_VIS_SMAGO
-# endif
+# undef  VADV_ADAPT_IMP
                       /* Vertical Mixing */
 # undef  BODYFORCE
 # undef  BVF_MIXING
-# define LMD_MIXING
-# undef  GLS_MIXING
+# undef  LMD_MIXING
+# define  GLS_MIXING
+# undef  GLS_MIX2017
 # ifdef LMD_MIXING
 #  define LMD_SKPP
 #  define LMD_BKPP
@@ -811,18 +928,35 @@
 #  define LMD_NONLOCAL
 # endif
 # ifdef GLS_MIXING
-#  define GLS_KKL
-#  undef  GLS_KOMEGA
+#  undef GLS_KKL
+#  define  GLS_KOMEGA
 #  undef  GLS_KEPSILON
 #  undef  GLS_GEN
+#  define GLS_MIXING_3D
 #  undef  KANTHA_CLAYSON
 #  undef  CRAIG_BANNER
-#  undef  CANUTO_A
+#  define  CANUTO_A
 #  undef  ZOS_HSIG
+# endif
+# ifdef GLS_MIX2017
+#  define  GLS_KOMEGA
+#  undef GLS_KEPSILON
+#  undef  GLS_GEN
+#  undef GLS_HADV_UP1
+#  undef GLS_DXW
+#  undef GLS_DXV
+#  define CANUTO_A
+#  undef  GibLau_78
+#  undef  MelYam_82
+#  undef  KanCla_94
+#  undef  Luyten_96
+#  undef  CANUTO_B 
+#  undef  Cheng_02
 # endif
 
                       /* Input/Output & Diagnostics */
-# define AVERAGES
+# undef AVERAGES
+
 
 # elif defined SHELFRONT
 /*

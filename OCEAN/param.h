@@ -76,8 +76,10 @@
       parameter (LLm0=64,   MMm0=64,   N=32)
 #elif defined CALDEIRA
 !      parameter (LLm0=100,  MMm0=100,  N=50)
-      parameter (LLm0=64,  MMm0=64,  N=32)
-!      parameter (LLm0=128,  MMm0=128,  N=64)
+!      parameter (LLm0=64,  MMm0=64,  N=32)
+      parameter (LLm0=768,  MMm0=768,  N=256)
+#elif defined TAYLOR_INST
+      parameter (LLm0=192,  MMm0=192,  N=512)
 #elif defined SHELFRONT
       parameter (LLm0=4,    MMm0=40,   N=10)
 #elif defined SOLITON
@@ -205,12 +207,12 @@
 # else     
 !      parameter (NP_XI=1,  NP_ETA=1,  NNODES=NP_XI*NP_ETA)
 !      parameter (NP_XI=4,  NP_ETA=1,  NNODES=NP_XI*NP_ETA)
-      parameter (NP_XI=4,  NP_ETA=2,  NNODES=NP_XI*NP_ETA)
+      parameter (NP_XI=4,  NP_ETA=4,  NNODES=NP_XI*NP_ETA)
 # endif
       parameter (NPP=1)
       parameter (NSUB_X=1, NSUB_E=1)
 #elif defined OPENMP
-      parameter (NPP=4)
+      parameter (NPP=16)
 # ifdef AUTOTILING
       common/distrib/NSUB_X, NSUB_E
 # else
@@ -395,6 +397,15 @@
 # if defined BBL && defined AGRIF
       integer Agrif_lev_sedim
       parameter (Agrif_lev_sedim=0)
+# endif
+
+# if defined GLS_MIXING || GLS_MIX2017
+      integer NGLS
+      parameter(NGLS=2)
+      integer itke
+      parameter(itke=1)
+      integer igls
+      parameter(igls=2)     
 # endif
 
 #endif /* SOLVE3D */
