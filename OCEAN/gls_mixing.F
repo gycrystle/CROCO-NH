@@ -92,12 +92,12 @@
       REAL            ::  trb_sfc  , trb_bot  , z0_s, z0_b , gls_min
       REAL            ::  HUon_w   , HVom_w   , trb_min(2), Denom
       ! Parameter values      
-      REAL, PARAMETER ::  eps_min =  1.0E-12     ! min value for dissipation rate
-      REAL, PARAMETER ::  tke_min =  1.0E-06     ! min value for TKE
+      REAL, PARAMETER ::  eps_min =  1.0E-20     ! min value for dissipation rate
+      REAL, PARAMETER ::  tke_min =  1.0E-12     ! min value for TKE
 # ifdef GLS_MIXING_3D
-      REAL, PARAMETER ::  eps     =  1.0E-04     ! min stable stratification
-      REAL, PARAMETER ::  nuws    =  1.0E-06     ! background value for diffusivities 
-      REAL, PARAMETER ::  nuwm    =  1.0E-06     ! background value for viscosities
+      REAL, PARAMETER ::  eps     =  1.0E-08     ! min stable stratification
+      REAL, PARAMETER ::  nuws    =  1.0E-12     ! background value for diffusivities 
+      REAL, PARAMETER ::  nuwm    =  1.0E-12     ! background value for viscosities
 # else
       REAL, PARAMETER ::  eps     =  1.0E-14     ! min stable stratification
       REAL, PARAMETER ::  nuws    =  0.1E-04     ! background value for diffusivities 
@@ -305,7 +305,7 @@
                dv  = cff*( v(i, j, k+1,tind)+v(i, j+1, k+1,tind)      ! dvdz
      &                    -v(i, j, k  ,tind)-v(i, j+1, k  ,tind))
 # ifdef GLS_MIXING_3D
-#  ifdef NBQ
+#  if defined NBQ || defined NHMG
                dw  = 0.5*pm(i,j)
      &                  *( wz(i+1,j,k,tind)-wz(i-1,j,k,tind))         ! dwdx
                shear2(i,j,k) = (du+dw)*(du+dw)
@@ -321,7 +321,7 @@
                dv  = 0.5*pn(i,j)
      &                  *( v(i, j+1, k+1,tind)-v(i, j, k+1,tind)     ! dvdy
      &                    +v(i, j+1, k  ,tind)-v(i, j, k  ,tind))
-#  ifdef NBQ
+#  if defined NBQ || defined NHMG
                dw  = cff*( wz(i,j,k+1,tind)-wz(i,j,k-1,tind))        ! dwdz
 #  else
                dw = 0.
@@ -474,7 +474,7 @@
      &                                  *   zalp*   wepb(i,j)
 # endif 
                   ! bottom
-                  z0_b        = MAX( Zob , 1.E-04 ) ! GYC: Zob(i,j) for newer version of croco
+                  z0_b        = MAX( Zob, 1.E-04 )
                   cff         = 0.5*( trb( i,j,  1,nnew,itke )
      &                            +   trb( i,j,  0,nnew,itke ) )
                   lgthsc      = vonKar*(0.5*Hz(i,j,1)+z0_b)
