@@ -25,12 +25,12 @@
 !
 #  ifdef TS_HADV_C6
 #   define FLUX5 flux6
-#   define FLUX3 flux3
+#   define FLUX3 flux4
 #   define FLUX2 flux2
 #   undef  UP5_MASKING
 #  elif defined TS_HADV_WENO5
 #   define FLUX5 flux5_weno
-#   define FLUX3 flux3
+#   define FLUX3 flux3_weno
 #   define FLUX2 flux1
 #   define UP5_MASKING
 #  else
@@ -40,7 +40,7 @@
 #   define UP5_MASKING
 #  endif
 !
-            cdif=0.2 
+            cdif=1. 
 #  include "t3dadv_order5.h"
 !
 #  undef FLUX5
