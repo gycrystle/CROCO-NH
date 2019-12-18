@@ -62,4 +62,5 @@ gmon.out
 # Ignore all files *.txt
 *.txt
 # Ignore directories
-/Compile/*
+/Compile/
+/scratch/
