@@ -60,3 +60,6 @@ gmon.out
 *.png
 # Ignore all files *.txt
 *.txt
+# Ignore folders
+/Compile/
+/scratch/
