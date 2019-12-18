@@ -20,6 +20,7 @@ doc/build
 Makefile
 # Ignore all files *~
 *~
+*#
 # Ignore all files *_old
 *_old
 # Ignore all files *.la
